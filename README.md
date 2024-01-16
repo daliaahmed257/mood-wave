@@ -10,6 +10,10 @@
 
 - **Sign-Up and Login:** Users can create accounts and securely log in to access their mood journal.
 
+### Profile Customization
+
+- **Profile Picture:** Users can upload a profile picture to customize their account.
+
 ### Mood Journal
 
 - **Daily Mood Entry:** Users can journal their mood for each day, describing how they feel and any thoughts or experiences related to their emotional state.
