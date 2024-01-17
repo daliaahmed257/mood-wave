@@ -47,7 +47,7 @@
 
 ## Resouces
 
-1. [Wireframe](link_to_wireframe)
+1. [Wireframe](https://drive.google.com/file/d/1EJizs7Cv_QslQy10SDMKt7HH_lZIQbW0/view?usp=sharing)
 2. [Entity-Relationship Diagram (ERD)](https://drive.google.com/file/d/1RGQ_n91RxcmG6m7Z6-Xx3kmMrvvTfuXW/view?usp=sharing)
 3. [Trello Board](https://trello.com/b/QR2Ftgvb/moodwave)
 4. [Pitch Deck](https://docs.google.com/presentation/d/1v_yxZqIxUZ7SoPzGAOAcpFWwt2_hsMaeqCZ-dPjstLE/edit#slide=id.p)
