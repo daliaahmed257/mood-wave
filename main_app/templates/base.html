@@ -18,8 +18,8 @@
                 <ul class="right">
                     <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated %}
-                      <!-- <li><a href="{% url 'playlists_index' %}">Playlists</a></li>
-                      <li><a href="{% url 'moods_create' %}">Add Mood</a></li> -->
+                      <li><a href="{% url 'playlists' %}">Playlists</a></li>
+                      <li><a href="{% url 'create' %}">Add Mood</a></li>
                       <li><a href="{% url 'index' %}">My Moods</a></li>
                       <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
