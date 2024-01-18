@@ -1,11 +1,11 @@
-{% load static %}
+
 
 <h1>MoodWave</h1>
 
-{% for song in songs %}
+
 <audio controls>
     <source src="{{ song.mp3_file.url }}" type="audio/mp3">
     Your browser does not support the audio tag.
 </audio>
-{% endfor %}
+
 

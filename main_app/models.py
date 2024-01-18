@@ -7,14 +7,18 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class Song(models.Model):
-  title = models.CharField()
-  artist = models.CharField()
-  mp3_file = models.FileField(upload_to='mp3_files/')
-  Hyperlink = models.CharField()
+    title = models.CharField()
+    artist = models.CharField()
+    Hyperlink = models.CharField()
+    url = models.CharField(max_length=200)
+    mood = models.ForeignKey('Mood', on_delete=models.CASCADE)
+
 
 class Mood(models.Model):
   title = models.CharField()
-  playlist = {models.ForeignKey(Song, on_delete=models.CASCADE, ), }
+  playlist = models.ForeignKey(Song, on_delete=models.CASCADE)
+  
+
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
