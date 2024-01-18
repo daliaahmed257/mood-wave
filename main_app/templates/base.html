@@ -1,4 +1,3 @@
-{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mood Wave</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 </head>
 <body>
     <header class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Mood Wave</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Home</a></li>
                 </ul>
                 <ul class="right">
                     <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated %}
-                      <!-- <li><a href="{% url 'playlists_index' %}">Playlists</a></li> -->
+                  
                       <li><a href="{% url 'moods_create' %}">Add Mood</a></li>
                       <li><a href="{% url 'index' %}">My Moods</a></li>
                       <li><a href="{% url 'logout' %}">Log Out</a></li>

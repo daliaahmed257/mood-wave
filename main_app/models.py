@@ -8,14 +8,14 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class Song(models.Model):
-  title = models.CharField()
-  artist = models.CharField()
+  title = models.CharField(max_length=200)
+  artist = models.CharField(max_length=200)
   mp3_file = models.FileField(upload_to='mp3_files/')
-  Hyperlink = models.CharField()
+  Hyperlink = models.CharField(max_length=200)
 
 class Mood(models.Model):
-  title = models.CharField()
-  playlist = {models.ForeignKey(Song, on_delete=models.CASCADE, ), }
+  title = models.CharField(max_length=200)
+  playlist = models.ForeignKey(Song, on_delete=models.CASCADE)
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -23,7 +23,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   is_staff = models.BooleanField(default=False)
   is_active = models.BooleanField(default=True)
   date_joined = models.DateTimeField(default=timezone.now)
-  favorites = models.ManyToManyField(Song, default={'',})
+  favorites = models.ManyToManyField(Song, default=list)
 
   USERNAME_FIELD = "email"
   REQUIRED_FIELDS = []

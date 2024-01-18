@@ -11,6 +11,9 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+def moods_index(request):
+  return render(request, 'moods/index.html')
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
@@ -20,6 +23,8 @@ def signup(request):
     if form.is_valid():
       # This will add the user to the database
       user = form.save()
+      print(user)
+      print(request)
       # This is how we log a user in via code
       login(request, user)
       return redirect('index')
