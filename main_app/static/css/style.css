@@ -1,14 +1,12 @@
+/* All PAGES */
+
 * {
     box-sizing: border-box;
     margin: 0;
 }
 
 body {
-    margin: 0
-}
-
-.content {
-    margin: 0
+    margin: 0;
 }
 
 a {
@@ -16,12 +14,25 @@ a {
     color: inherit;
 }
 
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
 .page-title {
     text-align: center;
     margin-bottom: 4vmin;
 }
 
-/* moods/index */
+/* BASE */
+
+.base-container {
+    background-color: rgb(203, 203, 203);
+}
+
+/* MOODS/INDEX */
 
 .new-mood-card {
     border: 2px solid black;
@@ -48,4 +59,14 @@ a {
     width: 50px;
     background-color: rgb(255, 234, 0);
     border-radius: 100%;
+}
+
+/* MOODS/DETAILS */
+
+.details-mood-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(220, 219, 219);
+    border-radius: 8px;
+    padding: 3vmin;
 }
