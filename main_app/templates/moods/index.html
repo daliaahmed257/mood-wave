@@ -1,25 +1,44 @@
-{% extends 'base.html' %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<h1>My Moods</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../static/css/style.css">
+    <title>Document</title>
+</head>
 
-<a href="">
-    <div class="new-mood-card">
-        <p>Add New Mood</p>
-    </div>
-</a>
+<body>
+    <section class="container">
 
-<a href="">
-    <div class="mood-card">
-        <div class="mood-card-content">
-            <div class="mood-logo"></div>
-            <p class="mood-title">Happy</p>
-            <p class="mood-song">Happy Song</p>
-            <p class="mood-date">01/18/2024</p>
-        </div>
-    </div>
-</a>
+        <h1 class="page-title">My Moods</h1>
 
+        <a href="">
+            <div class="new-mood-card">
+                <p>Add New Mood</p>
+            </div>
+        </a>
 
+        <a href="">
+            <div class="mood-cards-list">
+                <div class="mood-card">
+                    <div class="mood-card-left">
+                        <div class="mood-logo"></div>
+                        <div class="mood-content">
+                            <p>sad</p>
+                            <p>sad song</p>
+                        </div>
+                    </div>
+                    <div class="mood-card-right">
+                        <p>01/18/2024</p>
+                    </div>
+                </div>
+            </div>
+        </a>
 
-{% endblock %}
+    </section>
+</body>
+
+</html>
