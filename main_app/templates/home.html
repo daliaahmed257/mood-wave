@@ -1,7 +1,11 @@
-{% extends "base.html" %}
+{% load static %}
 
-{% block content %}
+<h1>MoodWave</h1>
 
-<h1>Hello World</h1>
+{% for song in songs %}
+<audio controls>
+    <source src="{{ song.mp3_file.url }}" type="audio/mp3">
+    Your browser does not support the audio tag.
+</audio>
+{% endfor %}
 
-{% endblock  %}
