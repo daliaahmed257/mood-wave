@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,6 +14,12 @@ def about(request):
 def moods_index(request):
   return render(request, 'moods/index.html')
 
+def playlists(request):
+  return render(request, 'playlists.html')
+
+def moods_create(request):
+  return render(request, 'moods/create.html')
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
@@ -23,8 +29,6 @@ def signup(request):
     if form.is_valid():
       # This will add the user to the database
       user = form.save()
-      print(user)
-      print(request)
       # This is how we log a user in via code
       login(request, user)
       return redirect('index')
@@ -34,3 +38,9 @@ def signup(request):
   form = CustomUserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+def user_logout(request):
+  # Log the user out
+  logout(request)
+  # Redirect to the home page or any other desired page
+  return redirect('home')
