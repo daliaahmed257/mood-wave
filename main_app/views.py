@@ -1,9 +1,14 @@
+import uuid
+import boto3
+import os
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from . forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import Mood, Song, CustomUser, Journal
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+
 # Create your views here.
 def home(request):
   return render(request, 'home.html')
@@ -40,10 +45,27 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def user_logout(request):
-    if request.method == 'POST':
-        # Log the user out
-        logout(request)
-        # Redirect to the home page or any other desired page
-        return redirect('home')
-    # If it’s a GET request, you can handle it differently or just redirect to home
-    return redirect('home')
+  # Log the user out
+  logout(request)
+  # Redirect to the home page or any other desired page
+  return redirect('home')
+
+def add_song(request, mood_id):
+    # song-file will be the "name" attribute on the <input type="file">
+    song_file = request.FILES.get('song-file', None)
+    if song_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + song_file.name[song_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(song_file, bucket, key)
+            # build the full url string
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            Song.objects.create(url=url, mood_id=mood_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('detail', mood_id=mood_id)
