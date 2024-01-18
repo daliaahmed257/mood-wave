@@ -1,12 +1,9 @@
 from django.db import models
-<<<<<<< HEAD
-from django.contrib.auth.models import User
-=======
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 from .managers import CustomUserManager
 from django.utils.translation import gettext_lazy as _
->>>>>>> fbd75cf519ffbbcaaeec54ecabded96cc12f902d
+
 
 # Create your models here.
 
