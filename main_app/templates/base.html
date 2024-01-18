@@ -21,12 +21,11 @@
                       <li><a href="{% url 'playlists' %}">Playlists</a></li>
                       <li><a href="{% url 'create' %}">Add Mood</a></li>
                       <li><a href="{% url 'index' %}">My Moods</a></li>
-                      <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
                       <li><a href="{% url 'signup' %}">Sign Up</a></li>
                       <li><a href="{% url 'login' %}">Log In</a></li>
                     {% endif %}
-                  </ul>
+                 </ul>
             </div>
         </nav>
     </header>
