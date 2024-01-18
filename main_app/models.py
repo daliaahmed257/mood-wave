@@ -6,16 +6,18 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
-class Song(models.Model):
-  title = models.CharField()
-  artist = models.CharField()
-  mp3_file = models.FileField(upload_to='mp3_files/')
-  Hyperlink = models.CharField()
+
 
 class Mood(models.Model):
   title = models.CharField()
-  playlist = {models.ForeignKey(Song, on_delete=models.CASCADE, ), }
+  description = models.TextField()
 
+class Song(models.Model):
+  title = models.CharField()
+  artist = models.CharField()
+  mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
+  mp3_file = models.FileField(upload_to='mp3_files/')
+  Hyperlink = models.CharField()
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
   email = models.EmailField(_("email address"), unique=True)
@@ -32,5 +34,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   def __str__(self):
     return self.email
 
+class Journal(models.Model):
+  content = models.TextField(default="")
+  date = models.DateTimeField(timezone.now)
+  user = models.ForeignKey(CustomUser)
 
 
