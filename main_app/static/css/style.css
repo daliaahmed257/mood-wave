@@ -1,3 +1,5 @@
+/* All PAGES */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -24,7 +26,7 @@ a {
     margin-bottom: 4vmin;
 }
 
-/* moods/index */
+/* MOODS/INDEX */
 
 .new-mood-card {
     border: 2px solid black;
@@ -53,7 +55,7 @@ a {
     border-radius: 100%;
 }
 
-/* moods/details */
+/* MOODS/DETAILS */
 
 .details-mood-card {
     display: flex;
