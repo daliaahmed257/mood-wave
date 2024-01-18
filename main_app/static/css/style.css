@@ -26,6 +26,12 @@ a {
     margin-bottom: 4vmin;
 }
 
+/* BASE */
+
+.base-container {
+    background-color: rgb(203, 203, 203);
+}
+
 /* MOODS/INDEX */
 
 .new-mood-card {

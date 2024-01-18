@@ -40,7 +40,10 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def user_logout(request):
-  # Log the user out
-  logout(request)
-  # Redirect to the home page or any other desired page
-  return redirect('home')
+    if request.method == 'POST':
+        # Log the user out
+        logout(request)
+        # Redirect to the home page or any other desired page
+        return redirect('home')
+    # If it’s a GET request, you can handle it differently or just redirect to home
+    return redirect('home')
