@@ -12,32 +12,25 @@
 
 </head>
 <body>
-
-  <div class="container base-container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
-      <a href="{% url 'home' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Mood Wave</span>
-      </a>
-
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
-        {% if user.is_authenticated %}
-          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">My Moods</a></li>
-          <li class="nav-item"><a href="{% url 'create' %}" class="nav-link">Add Mood</a></li>
-          <li class="nav-item"><a href="{% url 'playlists' %}" class="nav-link">Playlists</a></li>
-        {% else %}
-          <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">Sign Up</a></li>
-          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Log In</a></li>
-        {% endif %}
-      </ul>
-
-      {% if user.is_authenticated %}
-      <form method=“post” action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type=“submit”>Log Out</button>
-        {% endif %}
-    </form>
+    <header class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Home</a></li>
+                </ul>
+                <ul class="right">
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    {% if user.is_authenticated %}
+                      <li><a href="{% url 'playlists' %}">Playlists</a></li>
+                      <li><a href="{% url 'create' %}">Add Mood</a></li>
+                      <li><a href="{% url 'index' %}">My Moods</a></li>
+                    {% else %}
+                      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                      <li><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
+                 </ul>
+            </div>
+        </nav>
     </header>
   </div>
 

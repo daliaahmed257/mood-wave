@@ -45,10 +45,16 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def user_logout(request):
-  # Log the user out
-  logout(request)
-  # Redirect to the home page or any other desired page
-  return redirect('home')
+    if request.method == 'POST':
+        # Log the user out
+        logout(request)
+        # Redirect to the home page or any other desired page
+        return redirect('home')
+    # If it's a GET request, you can handle it differently or just redirect to home
+    # Log the user out
+    logout(request)
+    return redirect('home')
+  
 
 def add_song(request, mood_id):
     # song-file will be the "name" attribute on the <input type="file">
@@ -69,3 +75,4 @@ def add_song(request, mood_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('detail', mood_id=mood_id)
+
