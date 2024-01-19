@@ -90,23 +90,5 @@ def moods_detail(request, mood_id):
   
   
 
-def song_file(request, mood_id):
-    # song-file will be the "name" attribute on the <input type="file">
-    song_file = request.FILES.get('song-file', None)
-    if song_file:
-        s3 = boto3.client('s3')
-        # need a unique "key" for S3 / needs image file extension too
-        key = uuid.uuid4().hex[:6] + song_file.name[song_file.name.rfind('.'):]
-        # just in case something goes wrong
-        try:
-            bucket = os.environ['S3_BUCKET']
-            s3.upload_fileobj(song_file, bucket, key, ExtraArgs={'ContentType': 'audio/mpeg'})
-            # build the full url string
-            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            # we can assign to cat_id or cat (if you have a cat object)
-            Song.objects.create(url=url, mood_id=mood_id)
-        except Exception as e:
-            print('An error occurred uploading file to S3')
-            print(e)
-    return redirect('detail', mood_id=mood_id)
+
 
