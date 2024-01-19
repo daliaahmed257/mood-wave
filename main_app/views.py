@@ -31,6 +31,14 @@ class CreateMood(CreateView):
   model = Mood
   fields = ["title", "content"]
   
+class MoodUpdate(UpdateView):
+  model = Mood
+  fields = '__all__'
+  
+class MoodDelete(DeleteView):
+  model = Mood
+  success_url = '/moods'
+  
 
 
 def signup(request):
