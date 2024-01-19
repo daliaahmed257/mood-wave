@@ -8,12 +8,12 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 MOOD_CHOICES = {
-  "HAPPY": "Happy",
-  "CALM": "Calm",
-  "SAD": "Sad",
-  "BORED": "Bored",
-  "ANXIOUS": "Anxious",
-  "ANGRY": "Angry"
+  ("HAPPY", "Happy"),
+  ("CALM", "Calm"),
+  ("SAD", "Sad"),
+  ("BORED", "Bored"),
+  ("ANXIOUS", "Anxious"),
+  ("ANGRY", "Angry")
 }
 
 class Mood(models.Model):
