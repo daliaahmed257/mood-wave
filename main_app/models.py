@@ -9,6 +9,8 @@ from django.utils.translation import gettext_lazy as _
 
 class Mood(models.Model):
   title = models.CharField()
+  def __str__(self):
+        return self.title
   
   
 class Song(models.Model):
@@ -17,7 +19,8 @@ class Song(models.Model):
   Hyperlink = models.CharField()
   url = models.CharField(max_length=200)
   mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
- 
+  def __str__(self):
+        return self.title
   
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
