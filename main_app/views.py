@@ -96,3 +96,32 @@ def song_file(request, mood_id):
             print(e)
     return redirect('detail', mood_id=mood_id)
 
+def happy_playlist(request):
+  songs = Song.objects.filter(mood__title='Happy')
+  # Add logic for rendering form to add new songs
+  return render(request, 'playlists/happy_playlist.html', {'songs': songs})
+
+def sad_playlist(request):
+  songs = Song.objects.filter(mood__title='Sad')
+  # Add logic for rendering form to add new songs
+  return render(request, 'playlists/sad_playlist.html', {'songs': songs})
+
+def angry_playlist(request):
+  songs = Song.objects.filter(mood__title='Angry')
+  # Add logic for rendering form to add new songs
+  return render(request, 'playlists/angry_playlist.html', {'songs': songs})
+
+def calm_playlist(request):
+  songs = Song.objects.filter(mood__title='Calm')
+  # Add logic for rendering form to add new songs
+  return render(request, 'playlists/calm_playlist.html', {'songs': songs})
+
+def bored_playlist(request):
+  songs = Song.objects.filter(mood__title='Bored')
+  # Add logic for rendering form to add new songs
+  return render(request, 'playlists/bored_playlist.html', {'songs': songs})
+
+def anxious_playlist(request):
+  songs = Song.objects.filter(mood__title='Anxious')
+  # Add logic for rendering form to add new songs
+  return render(request, 'playlists/anxious_playlist.html', {'songs': songs})

@@ -11,5 +11,11 @@ urlpatterns = [
   path('accounts/signup/', views.signup, name='signup'),
   path('logout/', views.user_logout, name='logout'),
   path('moods/<int:mood_id>/', views.moods_detail, name='detail'),
-  path('moods/<int:mood_id>/song_file/', views.song_file, name='song_file')
+  path('moods/<int:mood_id>/song_file/', views.song_file, name='song_file'),
+  path('playlists/happy/', views.happy_playlist, name='happy_playlist'),
+  path('playlists/sad/', views.sad_playlist, name='sad_playlist'),
+  path('playlists/angry/', views.angry_playlist, name='angry_playlist'),
+  path('playlists/calm/', views.calm_playlist, name='calm_playlist'),
+  path('playlists/bored/', views.bored_playlist, name='bored_playlist'),
+  path('playlists/anxious/', views.anxious_playlist, name='anxious_playlist'),
 ]
