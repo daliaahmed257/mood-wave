@@ -14,22 +14,28 @@
             </div>
         </a>
 
-        <a href="">
-            <div class="mood-cards-list">
+        <div class="mood-cards-list">
+            {% for mood in moods %}
+            <a href="">
                 <div class="mood-card">
                     <div class="mood-card-left">
                         <div class="mood-logo"></div>
                         <div class="mood-content">
-                            <p>sad</p>
-                            <p>sad song</p>
+                            <p>{{mood.title}}</p>
+                            {% for song in songs %}
+                               {% if song.mood == mood %}
+                                <p>{{song.title}}</p>
+                               {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="mood-card-right">
                         <p>01/18/2024</p>
                     </div>
                 </div>
+            </a>
+                {% endfor %}
             </div>
-        </a>
 
     </section>
 </body>
