@@ -1,13 +1,140 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 body {
-    background: url('https://i.imgur.com/Kehc0bz.jpg') center/cover no-repeat;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: url(https://i.imgur.com/Kehc0bz.jpg) center/cover no-repeat;
 }
 
 main {
+    flex: 1;
     display: flex;
-    height: 100vh;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 100%;
+    max-width: 400px; /* Adjust this value based on your design */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 4vmin;
+}
+
+.btn {
+    background-color: #B17B9C;
+    padding: 8px 16px;
+}
+
+/* BASE */
+
+header {
+    margin-bottom: 0;
+}
+
+.nav-bar {
+    position: sticky;
+    margin-bottom: 4vmin;
+}
+
+.nav-bar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vmin;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.nav-item {
+    padding: 8px 16px;
+}
+
+.logout-btn {
+    border: none;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    cursor: pointer;
+    outline: none;
+    padding: 8px 16px;
+}
+
+footer {
+    position: sticky;
+    bottom: 0;
+    text-align: right;;
+    padding: 12px;
+}
+
+@media (max-width: 767.98px) {
+    .nav-bar-container {
+        flex-direction: column;
+    }
+}
+
+
+/* Sign Up */
+
+.sign-up-container {
+    display: flex;
+    min-width: 32vmin;
+}
+
+.signup-title {
+    margin-bottom: 32px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+
+}
+
+.field {
+    background-color: transparent;
+    border: 1px solid black;
+    width: 48vmin;
+    padding: 8px;
+}
 
