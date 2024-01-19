@@ -12,12 +12,13 @@
         <div class="mood-card-left">
             <div class="mood-logo"></div>
             <div class="mood-content">
-                <h3> {{ mood.title}}</h3>
-                <p>Notes: </p>
+                <h3> {{mood.title}}</h3>
+                <p>Notes: {{mood.content}}</p>
             </div>
         </div>
         <div class="mood-card-right">
-            <p>Date placeholder</p>
+            <p>{{mood.date}}</p>
+
         </div>
     </div>
     
@@ -26,7 +27,7 @@
         <audio controls>
             <source src="{{ song.url }}"></audio>
             <p>Title: {{song.title}}</p>
-            <p>Artist: {{song.Artist}}</p>
+            <p>Artist: {{song.artist}}</p>
         
         
     </div>
