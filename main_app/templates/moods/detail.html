@@ -1,32 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Document</title>
-</head>
 
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
 <section class="container content">
     <div class="details-mood-card">
         <div class="mood-card-left">
             <div class="mood-logo"></div>
             <div class="mood-content">
-                <p>sad</p>
-                <p>im eating pizza</p>
+                <h3> {{ mood.title}}</h3>
+                <p>Notes: {{journal.content}}</p>
             </div>
         </div>
         <div class="mood-card-right">
-            <p>01/18/2024</p>
+            <p>{{journal.date}}</p>
         </div>
     </div>
     
     <div class="sound-bar">
-        <p>sound bar here</p>
+       
+        <audio controls>
+            <source src="{{ song.url }}"></audio>
+            <p>Title: {{song.title}}</p>
+            <p>Artist: {{song.Artist}}</p>
+        
+        
     </div>
     
 </section>
 
-</body>
+{% endblock %}
+

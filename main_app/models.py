@@ -7,8 +7,19 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
+MOOD_CHOICES = {
+  "HAPPY": "Happy",
+  "CALM": "Calm",
+  "SAD": "Sad",
+  "BORED": "Bored",
+  "ANXIOUS": "Anxious",
+  "ANGRY": "Angry"
+}
+
 class Mood(models.Model):
-  title = models.CharField()
+  title = models.CharField(max_length=7, choices=MOOD_CHOICES)
+  def __str__(self):
+        return self.title
   
   
 class Song(models.Model):
@@ -17,7 +28,8 @@ class Song(models.Model):
   Hyperlink = models.CharField()
   url = models.CharField(max_length=200)
   mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
- 
+  def __str__(self):
+        return self.title
   
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):

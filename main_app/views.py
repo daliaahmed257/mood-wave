@@ -1,9 +1,16 @@
+import uuid
+import boto3
+import os
 from django.shortcuts import render, redirect
+from django.views.generic import DetailView
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from . forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import Mood, Song, CustomUser, Journal
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from django.views.generic import CreateView, UpdateView, DeleteView
+
 # Create your views here.
 def home(request):
   return render(request, 'home.html')
@@ -12,13 +19,25 @@ def about(request):
   return render(request, 'about.html')
 
 def moods_index(request):
-  return render(request, 'moods/index.html')
+  songs=Song.objects.all()
+  return render(request, 'moods/index.html', {
+    'songs' : songs
+  })
 
 def playlists(request):
   return render(request, 'playlists.html')
 
-def moods_create(request):
-  return render(request, 'moods/create.html')
+class CreateMood(CreateView):
+  model = Mood
+  fields = ["title"]
+  success_url = "/moods/"
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+
+    return super().form_valid(form)
+  
+
 
 def signup(request):
   error_message = ''
@@ -45,5 +64,36 @@ def user_logout(request):
         logout(request)
         # Redirect to the home page or any other desired page
         return redirect('home')
-    # If it’s a GET request, you can handle it differently or just redirect to home
+    # If it's a GET request, you can handle it differently or just redirect to home
+    # Log the user out
+    logout(request)
     return redirect('home')
+  
+  
+def moods_detail(request, mood_id):
+  mood= Mood.objects.get(id=mood_id)
+  return render(request, 'moods/detail.html', {'mood' :mood})
+  
+  
+  
+
+def song_file(request, mood_id):
+    # song-file will be the "name" attribute on the <input type="file">
+    song_file = request.FILES.get('song-file', None)
+    if song_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + song_file.name[song_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(song_file, bucket, key)
+            # build the full url string
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            Song.objects.create(url=url, mood_id=mood_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('detail', mood_id=mood_id)
+
