@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Mood, Song, CustomUser
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, SongForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 
 # Create your views here.
@@ -98,30 +98,78 @@ def song_file(request, mood_id):
 
 def happy_playlist(request):
   songs = Song.objects.filter(mood__title='Happy')
-  # Add logic for rendering form to add new songs
+  if request.method == 'POST':
+      form = SongForm(request.POST)
+      if form.is_valid():
+        new_song = form.save(commit=False)
+        new_song.mood = Mood.objects.get(title='Happy')
+        new_song.save()
+        return redirect('happy_playlist')
+  else:
+      form = SongForm()
   return render(request, 'playlists/happy_playlist.html', {'songs': songs})
 
 def sad_playlist(request):
   songs = Song.objects.filter(mood__title='Sad')
-  # Add logic for rendering form to add new songs
+  if request.method == 'POST':
+      form = SongForm(request.POST)
+      if form.is_valid():
+        new_song = form.save(commit=False)
+        new_song.mood = Mood.objects.get(title='Sad')
+        new_song.save()
+        return redirect('sad_playlist')
+  else:
+      form = SongForm()
   return render(request, 'playlists/sad_playlist.html', {'songs': songs})
 
 def angry_playlist(request):
   songs = Song.objects.filter(mood__title='Angry')
-  # Add logic for rendering form to add new songs
+  if request.method == 'POST':
+      form = SongForm(request.POST)
+      if form.is_valid():
+        new_song = form.save(commit=False)
+        new_song.mood = Mood.objects.get(title='Angry')
+        new_song.save()
+        return redirect('angry_playlist')
+  else:
+      form = SongForm()
   return render(request, 'playlists/angry_playlist.html', {'songs': songs})
 
 def calm_playlist(request):
   songs = Song.objects.filter(mood__title='Calm')
-  # Add logic for rendering form to add new songs
+  if request.method == 'POST':
+      form = SongForm(request.POST)
+      if form.is_valid():
+        new_song = form.save(commit=False)
+        new_song.mood = Mood.objects.get(title='Calm')
+        new_song.save()
+        return redirect('calm_playlist')
+  else:
+      form = SongForm()
   return render(request, 'playlists/calm_playlist.html', {'songs': songs})
 
 def bored_playlist(request):
   songs = Song.objects.filter(mood__title='Bored')
-  # Add logic for rendering form to add new songs
+  if request.method == 'POST':
+      form = SongForm(request.POST)
+      if form.is_valid():
+        new_song = form.save(commit=False)
+        new_song.mood = Mood.objects.get(title='Bored')
+        new_song.save()
+        return redirect('bored_playlist')
+  else:
+      form = SongForm()
   return render(request, 'playlists/bored_playlist.html', {'songs': songs})
 
 def anxious_playlist(request):
   songs = Song.objects.filter(mood__title='Anxious')
-  # Add logic for rendering form to add new songs
+  if request.method == 'POST':
+      form = SongForm(request.POST)
+      if form.is_valid():
+        new_song = form.save(commit=False)
+        new_song.mood = Mood.objects.get(title='Anxious')
+        new_song.save()
+        return redirect('anxious_playlist')
+  else:
+      form = SongForm()
   return render(request, 'playlists/anxious_playlist.html', {'songs': songs})
