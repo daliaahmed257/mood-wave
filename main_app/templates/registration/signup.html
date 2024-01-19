@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<h1>Sign Up</h1>
+<section class="signup-container">
+  <h1>Sign Up</h1>
+  <p class="red-text">{{ error_message }}</p>
+  <form method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn" value="Sign Up">
+  </form>
+</section>
 
-<p class="red-text">{{ error_message }}</p>
 
-<form method="POST" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="Sign Up">
-</form>
+{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'page-specific.css' %}">
 
 {% endblock %}

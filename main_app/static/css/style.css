@@ -131,3 +131,10 @@ footer {
     border-radius: 8px;
     padding: 3vmin;
 }
+
+
+/* PLAYLISTS */
+
+.playlist {
+    border: 2px solid black;
+}

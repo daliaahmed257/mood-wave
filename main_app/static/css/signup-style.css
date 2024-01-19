@@ -1,0 +1,13 @@
+body {
+    background: url('https://i.imgur.com/Kehc0bz.jpg') center/cover no-repeat;
+}
+
+main {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+

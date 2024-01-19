@@ -2,18 +2,25 @@
 
 {% block content %}
 
-<h2>Edit Playlist</h2>
+<h2 class="page-title">Edit  Playlist</h2>
 
 
-    <ul>
+    <!-- <ul>
         {% for song in mood.song_set.all %}
             <li><a href="{{ song.url }}">{{ song.url }}</a></li>
         {% endfor %}
-    </ul>
+    </ul> -->
 
+      <ul class="list-group">
         {% for song in songs %}
-            <p>{{song.title}}</p>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">{{song.title}}</div>
+            {{song.artist}}
+          </div>
+        </li>
         {% endfor %}
+      </ul>
 
 
 {% endblock  %}
