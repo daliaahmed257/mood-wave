@@ -6,7 +6,7 @@
 
     <ul>
         {% for song in songs %}
-            <li>{{ song.title }} - {{ song.artist }}</li>
+        <li>{{ song.title }} - {{ song.artist }} - <a href="{{ song.Hyperlink }}" target="_blank">Listen</a></li>
         {% endfor %}
     </ul>
 
