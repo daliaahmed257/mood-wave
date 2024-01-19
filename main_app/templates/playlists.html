@@ -2,17 +2,18 @@
 
 {% block content %}
 
-
-<h1>Playlists</h1>
-
-<ul>
-    {% for song in mood.song_set.all %}
-        <li><a href="{{ song.url }}">{{ song.url }}</a></li>
-    {% endfor %}
-</ul>
+<h2>Edit Playlist</h2>
 
 
+    <ul>
+        {% for song in mood.song_set.all %}
+            <li><a href="{{ song.url }}">{{ song.url }}</a></li>
+        {% endfor %}
+    </ul>
 
+        {% for song in songs %}
+            <p>{{song.title}}</p>
+        {% endfor %}
 
 
 {% endblock  %}
