@@ -18,16 +18,21 @@
         </div>
         <div class="mood-card-right">
             <p>{{mood.date}}</p>
+            <div class="card-action">
+                <a href="{% url 'moods_update' mood.id %}">Edit</a>
+                <a href="{% url 'moods_delete' mood.id %}">Delete</a>
+              </div>
         </div>
     </div>
     
     <div class="sound-bar">
        
+    
         <audio controls>
-            <source src="{{ song.url }}"></audio>
+            <source src="{{ song.url }}" type="audio/mp3"></audio>
             <p>Title: {{song.title}}</p>
             <p>Artist: {{song.artist}}</p>
-        
+      
         
     </div>
     

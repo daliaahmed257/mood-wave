@@ -21,8 +21,9 @@ def about(request):
 
 def moods_index(request):
   songs=Song.objects.all()
+  moods=Mood.objects.all()
   return render(request, 'moods/index.html', {
-    'songs' : songs
+    'songs' : songs, 'moods': moods
   })
 
 def playlists(request):
@@ -34,7 +35,7 @@ class CreateMood(CreateView):
   
 class MoodUpdate(UpdateView):
   model = Mood
-  fields = '__all__'
+  fields = [ 'title', 'content']
   
 class MoodDelete(DeleteView):
   model = Mood
@@ -77,6 +78,7 @@ def moods_detail(request, mood_id):
   mood= Mood.objects.get(id=mood_id)
   songs = Song.objects.filter(mood= mood)
   song = songs[random.randint(0, songs.count()-1)]
+ 
 
   return render(request, 'moods/detail.html', {'mood' :mood, 'song': song})
   
