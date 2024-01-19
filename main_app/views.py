@@ -19,9 +19,14 @@ def about(request):
   return render(request, 'about.html')
 
 def moods_index(request):
-  songs=Song.objects.all()
+  favorites = request.user.favorites
+  songs = Song.objects.all()
+  moods = Mood.objects.all()
+
   return render(request, 'moods/index.html', {
-    'songs' : songs
+    'songs' : songs,
+    'favorites': favorites,
+    'moods': moods
   })
 
 def playlists(request):
