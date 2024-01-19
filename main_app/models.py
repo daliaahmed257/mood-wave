@@ -16,19 +16,6 @@ MOOD_CHOICES = [
         ("ANGRY", "Angry"),
     ]
 
-class Mood(models.Model):
-  title = models.CharField(max_length=7, choices=MOOD_CHOICES)
-  content = models.TextField(default="")
-  date = models.DateTimeField(timezone.now, default=timezone.now)
-
-  def __str__(self):
-        return self.title
-  
-  def get_absolute_url(self):
-      return reverse("detail", kwargs={"mood_id": self.pk})
-  
-  
-  
 class Song(models.Model):
   title = models.CharField()
   artist = models.CharField()
@@ -37,7 +24,6 @@ class Song(models.Model):
   mood = models.CharField(max_length=7, choices=MOOD_CHOICES)
   def __str__(self):
         return self.title
-  
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
   email = models.EmailField(_("email address"), unique=True)
@@ -53,6 +39,22 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
   def __str__(self):
     return self.email
+  
+class Mood(models.Model):
+  title = models.CharField(max_length=7, choices=MOOD_CHOICES)
+  content = models.TextField(default="")
+  date = models.DateTimeField(timezone.now, default=timezone.now)
+  user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
+  def __str__(self):
+        return self.title
+  
+  def get_absolute_url(self):
+      return reverse("detail", kwargs={"mood_id": self.pk})
+  
+  
+  
+  
+
 
   
   
