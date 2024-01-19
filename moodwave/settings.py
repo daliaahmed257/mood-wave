@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'moodwave.urls'
@@ -71,6 +74,19 @@ TEMPLATES = [
         },
     },
 ]
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    
+]
+
+CORS_ALLOW_HEADERS = [
+    'audio/mpeg',  
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 WSGI_APPLICATION = 'moodwave.wsgi.application'
 

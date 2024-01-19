@@ -12,6 +12,7 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 import random
+from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
@@ -84,8 +85,6 @@ def moods_detail(request, mood_id):
   mood= Mood.objects.get(id=mood_id)
   songs = Song.objects.filter(mood= mood)
   song = songs[random.randint(0, songs.count()-1)]
- 
-
   return render(request, 'moods/detail.html', {'mood' :mood, 'song': song})
   
   
@@ -101,7 +100,7 @@ def song_file(request, mood_id):
         # just in case something goes wrong
         try:
             bucket = os.environ['S3_BUCKET']
-            s3.upload_fileobj(song_file, bucket, key)
+            s3.upload_fileobj(song_file, bucket, key, ExtraArgs={'ContentType': 'audio/mpeg'})
             # build the full url string
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
             # we can assign to cat_id or cat (if you have a cat object)
