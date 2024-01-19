@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Mood, Song, CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
 import random
 
 # Create your views here.
@@ -19,12 +20,16 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def moods_index(request):
   songs=Song.objects.all()
+  moods=Mood.objects.all()
   return render(request, 'moods/index.html', {
-    'songs' : songs
+    'songs' : songs,
+    'moods': moods
   })
 
+@login_required
 def playlists(request):
   return render(request, 'playlists.html')
 
@@ -61,6 +66,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+@login_required
 def user_logout(request):
     if request.method == 'POST':
         # Log the user out
