@@ -15,4 +15,4 @@ class CustomUserChangeForm(UserChangeForm):
 class SongForm(ModelForm):
     class Meta:
         model = Song
-        fields = ['title', 'artist', 'Hyperlink']
+        exclude = ['mood']

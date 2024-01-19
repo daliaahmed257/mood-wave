@@ -10,11 +10,15 @@
         {% endfor %}
     </ul>
 
-    <h3>Add New Song</h3>
-    <form method="post" action="{% url 'sad_playlist' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Song</button>
-    </form>
+     
+     <a href="{% url 'add_song' mood_id=mood.id %}">Add New Song</a>
 
-{% endblock %}
+     
+     {% if mood %}
+     <form method="post" action="{% url 'add_song' mood_id=mood.id %}">
+         {% csrf_token %}
+         {{ form.as_p }}
+         <button type="submit">Add Song</button>
+     </form>
+ {% endif %}
+ {% endblock %}

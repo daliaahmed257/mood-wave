@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Mood, Song, CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm, SongForm
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.http import Http404
 
 # Create your views here.
 def home(request):
@@ -110,20 +111,26 @@ def happy_playlist(request):
   return render(request, 'playlists/happy_playlist.html', {'songs': songs})
 
 def sad_playlist(request):
-  songs = Song.objects.filter(mood__title='Sad')
-  if request.method == 'POST':
-      form = SongForm(request.POST)
-      if form.is_valid():
-        new_song = form.save(commit=False)
-        new_song.mood = Mood.objects.get(title='Sad')
-        new_song.save()
-        return redirect('sad_playlist')
-  else:
-      form = SongForm()
-  return render(request, 'playlists/sad_playlist.html', {'songs': songs})
+    try:
+        mood = Mood.objects.get(title='SAD')
+        songs = Song.objects.filter(mood=mood)
+    except Mood.DoesNotExist:
+        raise Http404("Sad Playlist does not exist.")
+
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            new_song = form.save(commit=False)
+            new_song.mood = mood
+            new_song.save()
+            return redirect('sad_playlist')
+    else:
+        form = SongForm()
+
+    return render(request, 'playlists/sad_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
 
 def angry_playlist(request):
-  songs = Song.objects.filter(mood__title='Angry')
+  songs = Song.objects.filter(mood__title='ANGRY')
   if request.method == 'POST':
       form = SongForm(request.POST)
       if form.is_valid():
@@ -173,3 +180,22 @@ def anxious_playlist(request):
   else:
       form = SongForm()
   return render(request, 'playlists/anxious_playlist.html', {'songs': songs})
+
+def add_song(request, mood_id):
+  try:
+    mood = Mood.objects.get(pk=mood_id)
+  except Mood.DoesNotExist:
+        # Handle the case where the Mood doesn't exist (e.g., redirect to another page)
+    return redirect('home')
+
+  if request.method == 'POST':
+    form = SongForm(request.POST)
+    if form.is_valid():
+      new_song = form.save(commit=False)
+      new_song.mood = mood
+      new_song.save()
+      return redirect('playlist_detail', mood_id=mood_id)  # Redirect to playlist detail page
+  else:
+    form = SongForm()
+
+  return render(request, 'add_song.html', {'form': form})

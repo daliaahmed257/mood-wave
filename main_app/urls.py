@@ -18,4 +18,5 @@ urlpatterns = [
   path('playlists/calm/', views.calm_playlist, name='calm_playlist'),
   path('playlists/bored/', views.bored_playlist, name='bored_playlist'),
   path('playlists/anxious/', views.anxious_playlist, name='anxious_playlist'),
+  path('add_song/<int:mood_id>/', views.add_song, name='add_song'),
 ]
