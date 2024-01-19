@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from .models import CustomUser, Song
 
 class CustomUserCreationForm(UserCreationForm):
@@ -15,4 +15,5 @@ class CustomUserChangeForm(UserChangeForm):
 class SongForm(ModelForm):
     class Meta:
         model = Song
-        exclude = ['mood']
+        exclude = ['mood','url']
+        

@@ -213,20 +213,19 @@ def anxious_playlist(request):
     return render(request, 'playlists/anxious_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
 
 def add_song(request, mood_id):
-  try:
-    mood = Mood.objects.get(pk=mood_id)
-  except Mood.DoesNotExist:
-        # Handle the case where the Mood doesn't exist (e.g., redirect to another page)
-    return redirect('home')
+    try:
+        mood = Mood.objects.get(pk=mood_id)
+    except Mood.DoesNotExist:
+        return redirect('home')
 
-  if request.method == 'POST':
-    form = SongForm(request.POST)
-    if form.is_valid():
-      new_song = form.save(commit=False)
-      new_song.mood = mood
-      new_song.save()
-      return redirect('playlist_detail', mood_id=mood_id)  # Redirect to playlist detail page
-  else:
-    form = SongForm()
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            new_song = form.save(commit=False)
+            new_song.mood = mood
+            new_song.save()
+            return redirect(f'{mood.title.lower()}_playlist')  # Redirect to the specific playlist page
+    else:
+        form = SongForm()
 
-  return render(request, 'add_song.html', {'form': form})
+    return render(request, 'add_song.html', {'form': form})
