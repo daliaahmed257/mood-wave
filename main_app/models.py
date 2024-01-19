@@ -34,7 +34,7 @@ class Song(models.Model):
   artist = models.CharField()
   Hyperlink = models.CharField()
   url = models.CharField(max_length=200)
-  mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
+  mood = models.CharField(max_length=7, choices=MOOD_CHOICES)
   def __str__(self):
         return self.title
   

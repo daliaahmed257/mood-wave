@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Mood, Song, CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.views.generic import CreateView, UpdateView, DeleteView
+import random
 
 # Create your views here.
 def home(request):
@@ -19,14 +20,9 @@ def about(request):
   return render(request, 'about.html')
 
 def moods_index(request):
-  favorites = request.user.favorites
-  songs = Song.objects.all()
-  moods = Mood.objects.all()
-
+  songs=Song.objects.all()
   return render(request, 'moods/index.html', {
-    'songs' : songs,
-    'favorites': favorites,
-    'moods': moods
+    'songs' : songs
   })
 
 def playlists(request):
@@ -38,6 +34,14 @@ def playlists(request):
 class CreateMood(CreateView):
   model = Mood
   fields = ["title", "content"]
+  
+class MoodUpdate(UpdateView):
+  model = Mood
+  fields = '__all__'
+  
+class MoodDelete(DeleteView):
+  model = Mood
+  success_url = '/moods'
   
 
 
@@ -74,7 +78,10 @@ def user_logout(request):
   
 def moods_detail(request, mood_id):
   mood= Mood.objects.get(id=mood_id)
-  return render(request, 'moods/detail.html', {'mood' :mood})
+  songs = Song.objects.filter(mood= mood)
+  song = songs[random.randint(0, songs.count()-1)]
+
+  return render(request, 'moods/detail.html', {'mood' :mood, 'song': song})
   
   
   

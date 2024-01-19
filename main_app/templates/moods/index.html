@@ -16,7 +16,7 @@
 
         <div class="mood-cards-list">
             {% for mood in moods %}
-            <a href="">
+            <a href="{% url 'detail' mood.id%}">
                 <div class="mood-card">
                     <div class="mood-card-left">
                         <div class="mood-logo"></div>
