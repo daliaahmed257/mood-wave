@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Mood, Song, CustomUser, Journal
+from .models import Mood, Song, CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 
@@ -34,13 +34,7 @@ def playlists(request):
 
 class CreateMood(CreateView):
   model = Mood
-  fields = ["title"]
-  success_url = "/moods/"
-
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-
-    return super().form_valid(form)
+  fields = ["title", "content"]
   
 
 
