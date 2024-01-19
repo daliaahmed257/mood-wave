@@ -98,17 +98,23 @@ def song_file(request, mood_id):
     return redirect('detail', mood_id=mood_id)
 
 def happy_playlist(request):
-  songs = Song.objects.filter(mood__title='Happy')
-  if request.method == 'POST':
-      form = SongForm(request.POST)
-      if form.is_valid():
-        new_song = form.save(commit=False)
-        new_song.mood = Mood.objects.get(title='Happy')
-        new_song.save()
-        return redirect('happy_playlist')
-  else:
-      form = SongForm()
-  return render(request, 'playlists/happy_playlist.html', {'songs': songs})
+    try:
+        mood = Mood.objects.get(title='HAPPY')
+        songs = Song.objects.filter(mood=mood)
+    except Mood.DoesNotExist:
+        raise Http404("Happy Playlist does not exist.")
+
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            new_song = form.save(commit=False)
+            new_song.mood = mood
+            new_song.save()
+            return redirect('happy_playlist')
+    else:
+        form = SongForm()
+
+    return render(request, 'playlists/happy_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
 
 def sad_playlist(request):
     try:
@@ -130,56 +136,81 @@ def sad_playlist(request):
     return render(request, 'playlists/sad_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
 
 def angry_playlist(request):
-  songs = Song.objects.filter(mood__title='ANGRY')
-  if request.method == 'POST':
-      form = SongForm(request.POST)
-      if form.is_valid():
-        new_song = form.save(commit=False)
-        new_song.mood = Mood.objects.get(title='Angry')
-        new_song.save()
-        return redirect('angry_playlist')
-  else:
-      form = SongForm()
-  return render(request, 'playlists/angry_playlist.html', {'songs': songs})
+    try:
+        mood = Mood.objects.get(title='ANGRY')
+        songs = Song.objects.filter(mood=mood)
+    except Mood.DoesNotExist:
+        raise Http404("Angry Playlist does not exist.")
+
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            new_song = form.save(commit=False)
+            new_song.mood = mood
+            new_song.save()
+            return redirect('angry_playlist')
+    else:
+        form = SongForm()
+
+    return render(request, 'playlists/angry_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+
 
 def calm_playlist(request):
-  songs = Song.objects.filter(mood__title='Calm')
-  if request.method == 'POST':
-      form = SongForm(request.POST)
-      if form.is_valid():
-        new_song = form.save(commit=False)
-        new_song.mood = Mood.objects.get(title='Calm')
-        new_song.save()
-        return redirect('calm_playlist')
-  else:
-      form = SongForm()
-  return render(request, 'playlists/calm_playlist.html', {'songs': songs})
+    try:
+        mood = Mood.objects.get(title='CALM')
+        songs = Song.objects.filter(mood=mood)
+    except Mood.DoesNotExist:
+        raise Http404("Calm Playlist does not exist.")
+
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            new_song = form.save(commit=False)
+            new_song.mood = mood
+            new_song.save()
+            return redirect('calm_playlist')
+    else:
+        form = SongForm()
+
+    return render(request, 'playlists/calm_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
 
 def bored_playlist(request):
-  songs = Song.objects.filter(mood__title='Bored')
-  if request.method == 'POST':
-      form = SongForm(request.POST)
-      if form.is_valid():
-        new_song = form.save(commit=False)
-        new_song.mood = Mood.objects.get(title='Bored')
-        new_song.save()
-        return redirect('bored_playlist')
-  else:
-      form = SongForm()
-  return render(request, 'playlists/bored_playlist.html', {'songs': songs})
+    try:
+        mood = Mood.objects.get(title='BORED')
+        songs = Song.objects.filter(mood=mood)
+    except Mood.DoesNotExist:
+        raise Http404("Bored Playlist does not exist.")
+
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            new_song = form.save(commit=False)
+            new_song.mood = mood
+            new_song.save()
+            return redirect('bored_playlist')
+    else:
+        form = SongForm()
+
+    return render(request, 'playlists/bored_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
 
 def anxious_playlist(request):
-  songs = Song.objects.filter(mood__title='Anxious')
-  if request.method == 'POST':
-      form = SongForm(request.POST)
-      if form.is_valid():
-        new_song = form.save(commit=False)
-        new_song.mood = Mood.objects.get(title='Anxious')
-        new_song.save()
-        return redirect('anxious_playlist')
-  else:
-      form = SongForm()
-  return render(request, 'playlists/anxious_playlist.html', {'songs': songs})
+    try:
+        mood = Mood.objects.get(title='ANXIOUS')
+        songs = Song.objects.filter(mood=mood)
+    except Mood.DoesNotExist:
+        raise Http404("Anxious Playlist does not exist.")
+
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            new_song = form.save(commit=False)
+            new_song.mood = mood
+            new_song.save()
+            return redirect('anxious_playlist')
+    else:
+        form = SongForm()
+
+    return render(request, 'playlists/anxious_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
 
 def add_song(request, mood_id):
   try:
