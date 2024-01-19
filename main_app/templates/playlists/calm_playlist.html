@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Calm Playlist</h2>
+
+    <!-- Render existing songs -->
+    <ul>
+        {% for song in songs %}
+            <li>{{ song.title }} - {{ song.artist }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add form to add new songs -->
+    <!-- Your form code here -->
+
+{% endblock %}
