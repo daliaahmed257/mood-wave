@@ -10,5 +10,6 @@ urlpatterns = [
   path('moods/', views.moods_create, name='create'),
   path('accounts/signup/', views.signup, name='signup'),
   path('logout/', views.user_logout, name='logout'),
-  path('moods/<int:mood_id>/add_song/', views.add_song, name='add_song')
+  path('moods/<int:mood_id>/', views.moods_detail, name='detail'),
+  path('moods/<int:mood_id>/song_file/', views.song_file, name='song_file')
 ]

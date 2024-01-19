@@ -2,6 +2,7 @@ import uuid
 import boto3
 import os
 from django.shortcuts import render, redirect
+from django.views.generic import DetailView
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -17,7 +18,10 @@ def about(request):
   return render(request, 'about.html')
 
 def moods_index(request):
-  return render(request, 'moods/index.html')
+  songs=Song.objects.all()
+  return render(request, 'moods/index.html', {
+    'songs' : songs
+  })
 
 def playlists(request):
   return render(request, 'playlists.html')
@@ -55,8 +59,15 @@ def user_logout(request):
     logout(request)
     return redirect('home')
   
+  
+def moods_detail(request, mood_id):
+  mood= Mood.objects.get(id=mood_id)
+  return render(request, 'moods/detail.html', {'mood' :mood})
+  
+  
+  
 
-def add_song(request, mood_id):
+def song_file(request, mood_id):
     # song-file will be the "name" attribute on the <input type="file">
     song_file = request.FILES.get('song-file', None)
     if song_file:
