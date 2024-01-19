@@ -44,7 +44,7 @@ class Mood(models.Model):
   title = models.CharField(max_length=7, choices=MOOD_CHOICES)
   content = models.TextField(default="")
   date = models.DateTimeField(timezone.now, default=timezone.now)
-  user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+  user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
   def __str__(self):
         return self.title
   
