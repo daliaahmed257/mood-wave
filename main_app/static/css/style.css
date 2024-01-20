@@ -11,11 +11,12 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: #101019;
 }
 
 main {
     flex: 1;
+    color: white;
 }
 
 a {
@@ -43,7 +44,8 @@ a:hover {
 
 .nav-bar {
     position: sticky;
-    background-color: lightgray;
+    background: url(https://i.imgur.com/qujolg6.png) center;
+    background-size: cover;
     margin-bottom: 4vmin;
 }
 
@@ -82,7 +84,7 @@ footer {
     position: sticky;
     bottom: 0;
     text-align: right;
-    background-color: lightgray;
+    color: rgb(169, 168, 168);
     padding: 12px;
 }
 
@@ -96,17 +98,22 @@ footer {
 
 /* MOODS/INDEX */
 
+.mood-cards-list {
+    max-width: 600px;
+}
+
 .new-mood-card {
-    border: 2px solid black;
+    border: 1px solid white;
     border-radius: 8px;
     padding: 2vmin;
     margin-bottom: 2vmin;
+    max-width: 600px;
 }
 
 .mood-card {
     display: flex;
     justify-content: space-between;
-    border: 2px solid black;
+    border: 1px solid white;
     border-radius: 8px;
     padding: 3vmin;
 }
