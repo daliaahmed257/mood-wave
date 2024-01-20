@@ -19,18 +19,6 @@ main {
     align-items: center;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-form {
-    width: 100%;
-    max-width: 400px; /* Adjust this value based on your design */
-}
-
 a {
     text-decoration: none;
     color: inherit;
@@ -40,12 +28,6 @@ a:hover {
     text-decoration: none;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-}
 
 .page-title {
     text-align: center;
@@ -57,7 +39,7 @@ a:hover {
     padding: 8px 16px;
 }
 
-/* BASE */
+/* SIGN OUT BASE */
 
 header {
     margin-bottom: 0;
@@ -65,7 +47,8 @@ header {
 
 .nav-bar {
     position: sticky;
-    margin-bottom: 4vmin;
+    margin-bottom: 0;
+    color: white;
 }
 
 .nav-bar-container {
@@ -78,23 +61,10 @@ header {
 .nav-items {
     display: flex;
     align-items: center;
-    font-weight: bold;
+    font-weight:500
 }
 
 .nav-item {
-    padding: 8px 16px;
-}
-
-.logout-btn {
-    border: none;
-    width: auto;
-    overflow: visible;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    line-height: normal;
-    cursor: pointer;
-    outline: none;
     padding: 8px 16px;
 }
 
@@ -103,6 +73,8 @@ footer {
     bottom: 0;
     text-align: right;;
     padding: 12px;
+    margin-top: 56px;
+    color: white;
 }
 
 @media (max-width: 767.98px) {
@@ -138,3 +110,7 @@ footer {
     padding: 8px;
 }
 
+form {
+    width: 100%;
+    max-width: 400px;
+}

@@ -52,6 +52,7 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 2vmin;
+    flex-direction: row;
 }
 
 .nav-items {
