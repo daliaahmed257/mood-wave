@@ -20,13 +20,14 @@
                 <div class="mood-card">
                     <div class="mood-card-left">
                         <div class="mood-logo"></div>
-                        <div class="mood-content">
                             <p>{{mood.title}}</p>
-                            {% for song in songs %}
-                               {% if song.mood == mood %}
-                                <p>{{song.title}}</p>
-                               {% endif %}
-                            {% endfor %}
+                            <div class="mood-content">
+                                {% for song in songs %}
+                                    {% if song.mood == mood %}
+                                    <p>{{song.title}}</p>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                     <div class="mood-card-right">
