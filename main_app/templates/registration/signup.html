@@ -1,14 +1,45 @@
-{% extends 'base.html' %}
+{% extends 'signout-base.html' %}
+
 {% block content %}
+    <section class="signup-container">
+      <h1 class="signup-title">Sign Up</h1>
+      <p class="error-message">{{ error_message }}</p>
+      <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <div class="form-fields">
+          <div class="form-group">
+            <input class="field" type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" placeholder="Email">
+          </div>
+          
+          <div class="form-group">
+            <input class="field" type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.name }}" placeholder="Password">
+          </div>
+          
+          <div class="form-group">
+            <input class="field" type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.name }}" placeholder="Confirm Password">
+          </div>
+          {% if error_message %}
+            <ul class="password-help">
+              <li>Your password can’t be too similar to your other personal information.</li>
+              <li>Your password must contain at least 8 characters.</li>
+              <li>Your password can’t be a commonly used password.</li>
+              <li>Your password can’t be entirely numeric.</li>
+            </ul>
+          {% endif %}
+        </div>
+        <button type="submit" class="btn" value="Sign Up">Sign Up</button>
+      </form>
+    </section>
+   
+    {% endblock %}
 
-<h1>Sign Up</h1>
 
-<p class="red-text">{{ error_message }}</p>
-
-<form method="POST" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="Sign Up">
-</form>
-
-{% endblock %}
+<!-- <section class="signup-container">
+  <h1>Sign Up</h1>
+  <p class="red-text">{{ error_message }}</p>
+  <form method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn" value="Sign Up">
+  </form>
+</section> -->
