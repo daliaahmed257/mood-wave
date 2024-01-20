@@ -24,10 +24,9 @@ def about(request):
 def moods_index(request):
   songs=Song.objects.all()
   moods=Mood.objects.filter(user = request.user.id)
-  print(request.user.id)
   return render(request, 'moods/index.html', {
-    'songs' : songs,
-    'moods': moods
+    'songs': songs,
+    'moods': moods,
   })
 
 @login_required
