@@ -12,22 +12,26 @@
         <div class="mood-card-left">
             <div class="mood-logo"></div>
             <div class="mood-content">
-                <h3> {{ mood.title}}</h3>
-                <p>Notes: {{journal.content}}</p>
+                <h3> {{mood.title}}</h3>
+                <p>Notes: {{mood.content}}</p>
             </div>
         </div>
         <div class="mood-card-right">
-            <p>{{journal.date}}</p>
+            <p>{{mood.date}}</p>
+            <div class="card-action">
+                <a href="{% url 'moods_update' mood.id %}">Edit</a>
+                <a href="{% url 'moods_delete' mood.id %}">Delete</a>
+              </div>
         </div>
     </div>
     
     <div class="sound-bar">
-       
-        <audio controls>
-            <source src="{{ song.url }}"></audio>
+    
+            <audio controls>
+                <source src="{{ song.url }}" type="audio/mp3">
+            </audio>
             <p>Title: {{song.title}}</p>
-            <p>Artist: {{song.Artist}}</p>
-        
+            <p>Artist: {{song.artist}}</p>
         
     </div>
     

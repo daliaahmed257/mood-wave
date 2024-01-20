@@ -10,7 +10,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Mood, Song, CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm, SongForm
 from django.views.generic import CreateView, UpdateView, DeleteView
+
 from django.http import Http404
+
+from django.contrib.auth.decorators import login_required
+import random
+
 
 # Create your views here.
 def home(request):
@@ -19,23 +24,31 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def moods_index(request):
-  favorites = request.user.favorites
-  songs = Song.objects.all()
-  moods = Mood.objects.all()
-
+  songs=Song.objects.all()
+  moods=Mood.objects.filter(user = request.user.id)
+  print(request.user.id)
   return render(request, 'moods/index.html', {
     'songs' : songs,
-    'favorites': favorites,
     'moods': moods
   })
 
+@login_required
 def playlists(request):
   return render(request, 'playlists.html')
 
 class CreateMood(CreateView):
   model = Mood
   fields = ["title", "content"]
+  
+class MoodUpdate(UpdateView):
+  model = Mood
+  fields = [ 'title', 'content']
+  
+class MoodDelete(DeleteView):
+  model = Mood
+  success_url = '/moods'
   
 
 
@@ -58,6 +71,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+@login_required
 def user_logout(request):
     if request.method == 'POST':
         # Log the user out
@@ -72,7 +86,11 @@ def user_logout(request):
   
 def moods_detail(request, mood_id):
   mood= Mood.objects.get(id=mood_id)
-  return render(request, 'moods/detail.html', {'mood' :mood})
+  songs = Song.objects.filter(mood= mood)
+  song = songs[random.randint(0, songs.count()-1)]
+ 
+
+  return render(request, 'moods/detail.html', {'mood' :mood, 'song': song})
   
   
   
