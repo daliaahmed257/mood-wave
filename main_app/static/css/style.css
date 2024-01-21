@@ -4,7 +4,7 @@
     box-sizing: border-box;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-font-family: 'Viga', sans-serif;
+    font-family: 'Viga', sans-serif;
 }
 
 body {
@@ -99,7 +99,11 @@ footer {
     }
 }
 
+/* ABOUT */
 
+.about-container {
+    max-width: 600px;
+}
 
 /* MOODS/INDEX */
 
