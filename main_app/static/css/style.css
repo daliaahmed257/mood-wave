@@ -263,28 +263,51 @@ footer {
     align-items: center;
 }
 
-.song-list {
-    list-style-type: none;
+table {
+    border-collapse: separate;
+    border-spacing: 1.3vmin;
 }
-.song-list li a {
+
+
+table tbody a {
     color: rgb(255,160,222);
 }
 
-.song-list li a:hover {
+table tbody a:hover {
     color: rgb(85,139,188);
 }
 
 
+table tbody td:nth-child(2) { 
+    font-size: 1.5vmin;
+}
+
+
+/*add a song form*/
 
 .song-header {
     margin-top: 5vmin;
     margin-bottom: 2vmin;
 }
 
+.song-form label {
+    display: inline-block;
+    width: 100px;
+}
+
+.song-form input {
+    background-color: transparent;
+    border: 1px solid white;
+    margin: 1vmin;
+    width: 200px;
+   
+}
+
 .song-btn {
    background-color: #101019;
     color:rgb(255,160,222);
     border: none;
+    margin-top: 2vmin;
    
 }
 
@@ -295,6 +318,6 @@ footer {
 
 
 
-.playlist {
+/* .playlist {
     border: 2px solid black;
-}
+} */

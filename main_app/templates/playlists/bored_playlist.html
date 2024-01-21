@@ -3,25 +3,46 @@
 {% block content %}
 
 <section class="playlist-container">
-    <h2>Bored Playlist</h2>
+    <h2>{{mood.title}} Playlist</h2>
 
-
-    <ul class="song-list">
-        {% for song in songs %}
-        <li>{{ song.title }} by {{ song.artist }} - <a href="{{ song.Hyperlink }}" target="_blank">Watch Video</a></li>
-        {% endfor %}
-    </ul>
+    <table>
+        <tbody>
+            {% for song in songs %}
+            <tr>
+                <td>{{ song.title }} - {{ song.artist }}</td>
+                <td><a href="{{ song.Hyperlink }}" target="_blank">Watch Video</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 
     
 <h3 class="song-header">Add Your Song</h3>
 
      {% if mood %}
-     <form class="song-form" method="post" action="{% url 'add_song' mood_id=mood.id %}">
-         {% csrf_token %}
-         {{ form.as_p }}
-         <button class="song-btn" type="submit">Add</button>
-     </form>
+  <form class="song-form" method="post" action="{% url 'add_song' mood_id=mood.id %}">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="{{ form.title.id_for_label }}">Title:</label>
+        {{ form.title }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.artist.id_for_label }}">Artist:</label>
+        {{ form.artist }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.Hyperlink.id_for_label }}">Video Link:</label>
+        {{ form.Hyperlink }}
+    </div>
+
+    <div class="button-container">
+        <button class="song-btn" type="submit">Add Song</button>
+    </div>
+</form>
  {% endif %}
      </div>
 </section>
