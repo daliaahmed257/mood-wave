@@ -298,7 +298,7 @@ table tbody td:nth-child(2) {
 
 .song-form input {
     background-color: transparent;
-    border: 1px solid white;
+    border: .1vmin solid white;
     margin: 1vmin;
     width: 200px;
    
