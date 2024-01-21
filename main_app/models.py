@@ -41,9 +41,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     return self.email
   
 class Mood(models.Model):
-  title = models.CharField(max_length=7, choices=MOOD_CHOICES)
-  content = models.TextField(default="")
-  date = models.DateTimeField(timezone.now, default=timezone.now)
+  title = models.CharField(max_length=7, choices=MOOD_CHOICES, verbose_name="How are you feeling?")
+  content = models.TextField(default="", verbose_name="Could to explain further?")
+  date = models.DateTimeField(default=timezone.now)
   user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
   def __str__(self):
         return self.title
