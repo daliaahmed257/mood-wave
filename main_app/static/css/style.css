@@ -256,6 +256,45 @@ footer {
 
 /* PLAYLISTS */
 
+.playlist-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.song-list {
+    list-style-type: none;
+}
+.song-list li a {
+    color: rgb(255,160,222);
+}
+
+.song-list li a:hover {
+    color: rgb(85,139,188);
+}
+
+
+
+.song-header {
+    margin-top: 5vmin;
+    margin-bottom: 2vmin;
+}
+
+.song-btn {
+   background-color: #101019;
+    color:rgb(255,160,222);
+    border: none;
+   
+}
+
+.song-btn:hover {
+    color: rgb(85,139,188);
+
+}
+
+
+
 .playlist {
     border: 2px solid black;
 }
