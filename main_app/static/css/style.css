@@ -3,8 +3,9 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
-font-family: 'Viga', sans-serif;
+
+
+
 }
 
 body {
@@ -210,6 +211,47 @@ footer {
     display: none;
   }
 
+.artist-info {
+    text-align: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .details-mood-card {
+        width: 100%;
+    }
+}
+
+
+/* DELETE MOOD CONFIRMATION PAGE */
+
+.delete-title {
+    text-align: center;
+    margin-top: 20vmin;
+}
+
+.delete-mood {
+    text-align: center;
+    color: rgb(255,160,222);
+}
+
+.delete-mood:hover {
+   color: rgb(85,139,188);
+
+}
+
+
+.yes-delete {
+    color: rgb(255,160,222);
+    text-decoration: none;
+    border: none;
+    background-color: #101019;
+}
+
+.yes-delete:hover {
+    color: rgb(85,139,188);
+
+}
 
 
 /* PLAYLISTS */

@@ -49,8 +49,10 @@
   playButton.addEventListener('click', function () {
     if (audioPlayer.paused) {
       audioPlayer.play();
+      playButton.innerHTML = '&#9646;&#9646;'; 
     } else {
       audioPlayer.pause();
+      playButton.innerHTML = '&#9654;'; 
     }
   });
 
