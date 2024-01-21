@@ -19,6 +19,9 @@ body {
 main {
     flex: 1;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 a {
@@ -141,6 +144,11 @@ footer {
     border-radius: 8px;
     padding: 3vmin;
 }
+
+
+/* NEW MOOD FORM */
+
+
 
 
 /* PLAYLISTS */

@@ -2,11 +2,25 @@
 
 {% block content %}
 
-<form action="" method="POST">
+<!-- <form action="" method="POST">
   {% csrf_token %}
   <table>
     {{form.as_table}}
   </table>
+  <input type="submit" value="Add Mood">
+</form> -->
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <label for="{{ form.title.id_for_label }}">Mood:</label>
+  <select name="{{ form.title.name }}" id="{{ form.title.id_for_label }}">
+    <option value="{{ form.title.1 }}"></option>
+    <option value="{{ form.title.2 }}"></option>
+    <option value="{{ form.title.3 }}"></option>
+    <option value="{{ form.title.4 }}"></option>
+    <option value="{{ form.title.5 }}"></option>
+    <option value="{{ form.title.6 }}"></option>
+  </select>
   <input type="submit" value="Add Mood">
 </form>
 
