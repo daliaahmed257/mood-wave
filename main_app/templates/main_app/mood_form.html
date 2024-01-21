@@ -10,18 +10,23 @@
   <input type="submit" value="Add Mood">
 </form> -->
 
+
 <form action="" method="POST">
   {% csrf_token %}
-  <label for="{{ form.title.id_for_label }}">Mood:</label>
-  <select name="{{ form.title.name }}" id="{{ form.title.id_for_label }}">
-    <option value="{{ form.title.1 }}"></option>
-    <option value="{{ form.title.2 }}"></option>
-    <option value="{{ form.title.3 }}"></option>
-    <option value="{{ form.title.4 }}"></option>
-    <option value="{{ form.title.5 }}"></option>
-    <option value="{{ form.title.6 }}"></option>
-  </select>
+  
+  <label>How are you feeling?</label><br>
+  {% for value, label in form.title.field.choices %}
+    {% if value %}
+      <input type="radio" name="{{ form.title.name }}" id="id_{{ form.title.name }}_{{ forloop.counter }}" value="{{ value }}" {% if form.title.value == value %}checked{% endif %}>
+      <label for="id_{{ form.title.name }}_{{ forloop.counter }}">{{ label }}</label><br>
+    {% endif %}
+  {% endfor %}
+  
+  <label for="{{ form.content.id_for_label }}">Could you explain further?</label>
+  <textarea name="{{ form.content.name }}" id="{{ form.content.id_for_label }}" rows="4" cols="50">{{ form.content.value }}</textarea><br>
+
   <input type="submit" value="Add Mood">
 </form>
+
 
 {% endblock %}
