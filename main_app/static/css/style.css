@@ -20,6 +20,7 @@ main {
     flex: 1;
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -91,6 +92,7 @@ footer {
     text-align: right;
     color: rgb(169, 168, 168);
     padding: 12px;
+    background-color: #101019;
 }
 
 @media (max-width: 767.98px) {
@@ -107,7 +109,7 @@ footer {
 
 /* MOODS/INDEX */
 
-.mood-cards-list {
+.mood-card {
     max-width: 600px;
 }
 
@@ -116,7 +118,7 @@ footer {
     border-radius: 8px;
     padding: 2vmin;
     margin-bottom: 2vmin;
-    max-width: 600px;
+    min-width: 500px;
 }
 
 .mood-card {
@@ -125,6 +127,7 @@ footer {
     border: 1px solid white;
     border-radius: 8px;
     padding: 3vmin;
+    min-width: 500px;
 }
 
 .mood-card-left {
@@ -138,6 +141,7 @@ footer {
     background-color: rgb(255, 234, 0);
     border-radius: 100%;
 }
+
 
 /* MOODS/DETAILS */
 

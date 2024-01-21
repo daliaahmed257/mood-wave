@@ -3,45 +3,37 @@
 {% block content %}
 
 
-    <section class="container container-md">
+<h1 class="page-title">My Moods</h1>
 
-        <h1 class="page-title">My Moods</h1>
+<a class="mood-link" href="{% url 'create'%}">
+    <div class="new-mood-card">
+        <p>Add New Mood</p>
+    </div>
+</a>
 
-        <a href="{% url 'create'%}">
-            <div class="new-mood-card">
-                <p>Add New Mood</p>
 
-            </div>
-        </a>
-
-        <div class="mood-cards-list">
-            {% for mood in moods %}
-            <a href="{% url 'detail' mood.id%}">
-                <div class="mood-card">
-                    <div class="mood-card-left">
-                        <div class="mood-logo"></div>
-                            <p>{{mood.title}}</p>
-                            <div class="mood-content">
-                                {% for song in songs %}
-                                    {% if song.mood == mood %}
-                                    <p>{{song.title}}</p>
-                                {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mood-card-right">
-                        <p>{{mood.date}}</p>
+<div class="mood-cards-list">
+    {% for mood in moods %}
+        <a class="mood-link" href="{% url 'detail' mood.id%}">
+            <div class="mood-card">
+                <div class="mood-card-left">
+                    <div class="mood-logo"></div>
+                    <p>{{mood.title}}</p>
+                    <div class="mood-content">
+                        {% for song in songs %}
+                            {% if song.mood == mood %}
+                                <p>{{song.title}}</p>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-            </a>
-                {% endfor %}
+                <div class="mood-card-right">
+                    <p>{{mood.date}}</p>
+                </div>
             </div>
+        </a>
+    {% endfor %}
+</div>
 
-    </section>
-</body>
 
-</html>
-
-{% endblock  %}
-
+{% endblock %}
