@@ -13,16 +13,14 @@
                 <h3> {{mood.title}}</h3>
                 <p>Notes: {{mood.content}}</p>
             </div>
-            {% for moodphoto in mood.moodphoto_set.all %}
+            <div>
             <img src="{{moodphoto.url}}">
-          {% empty %}
-            <div>No Photos Uploaded</div>
-          {% endfor %}
+          </div>
           <form action="{% url 'add_moodphoto' mood.id %}" enctype="multipart/form-data" method="POST" >
             {% csrf_token %}
-            <input type="file" name="mood_photo-file">
+            <input type="file" name="moodphoto_file">
             <br><br>
-            <button type="submit" class="btn">Upload Photo</button>
+            <button type="submit">Upload Photo</button>
         </form>
           </div>
         <div class="mood-card-right">

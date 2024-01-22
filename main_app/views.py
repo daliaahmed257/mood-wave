@@ -92,11 +92,15 @@ def user_logout(request):
 def moods_detail(request, mood_id):
     mood= Mood.objects.get(id=mood_id)
     songs = Song.objects.filter(mood= mood)
-    song = songs[random.randint(0, songs.count()-1)]
-    print(mood, songs)
+    selected_song_id = request.session.get('selected_song_id')
+    if selected_song_id is None:
+        selected_song = songs[random.randint(0, songs.count() - 1)]
+        request.session['selected_song_id'] = selected_song.id
+    else:
+        selected_song = Song.objects.get(id=selected_song_id)
     return render(request, 'moods/detail.html', {
         'mood' :mood,
-        'song': song
+        'song': selected_song
         })
   
 def song_file(request, mood_id):
@@ -325,8 +329,10 @@ def user_detail(request, user_id):
 
 def add_moodphoto(request,mood_id):
     moodphoto_file = request.FILES.get('moodphoto_file', None)
+    print(moodphoto_file)
     if moodphoto_file:
         s3=boto3.client('s3')
+        
         key = uuid.uuid4().hex[:6] + moodphoto_file.name[moodphoto_file.name.rfind('.'):]
         try:
             bucket = os.environ['S3_MOOD_BUCKET']
