@@ -20,7 +20,10 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-  return render(request, 'home.html')
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+        return redirect('login')
 
 def about(request):
   return render(request, 'about.html')
@@ -53,7 +56,6 @@ class MoodDelete(DeleteView):
   model = Mood
   success_url = '/moods'
   
-
 
 def signup(request):
   error_message = ''
@@ -298,17 +300,24 @@ def edit_song(request, song_id, playlist):
     
     return redirect(playlist)  # Redirect back to the appropriate playlist URL
 
-def add_moodPhoto(request, mood_id):
-    mood_photo_file = request.FILES.get('mood-photo-file', None)
-    if mood_photo_file:
+def add_photo(request, user_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
         s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + mood_photo_file.name[mood_photo_file.name.rfind('.'):]
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
         try:
             bucket = os.environ['S3_BUCKET']
-            s3.upload_fileobj(mood_photo_file, bucket, key)
+            s3.upload_fileobj(photo_file, bucket, key)
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            MoodPhoto.objects.create(url=url, mood_id=mood_id)
+            user = request.user
+            user.avatar = url
         except Exception as e:
-            print('An error occurred uploading file to S3')
+            print('An error occurred uploading file to s3')
             print(e)
-    return redirect('detail', mood_id=mood_id)
+    return redirect('home')
+
+def user_detail(request, user_id):
+    user = CustomUser.objects.get(id=user_id)
+    return render(request, 'user/user_detail', {
+        'user': user
+    })

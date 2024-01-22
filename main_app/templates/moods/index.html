@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
 
+{% block hero_section %}
+<section class="hero container-fluid">
+    <h2>Listen to music that matches your mood today</h2>
+    <a href="{% url 'create'%}">
+        <div class="form-btn">
+            <p>Add new mood</p>
+        </div>
+    </a>
+</section>
+{% endblock %}
+
 {% block content %}
 
-
-    <section class="container container-md">
-
-        <h1 class="page-title">My Moods</h1>
-
-        <a href="{% url 'create'%}">
-            <div class="new-mood-card">
-                <p>Add New Mood</p>
-
-            </div>
-        </a>
-
-        <div class="mood-cards-list">
-            {% for mood in moods %}
-            <a href="{% url 'detail' mood.id%}">
-                <div class="mood-card">
-                    <div class="mood-card-left">
-                        <div class="mood-logo" style="background-color: {{mood.assign_color}}"></div>
-                        <p>{{mood.title}}</p>
-                        <div class="mood-content">
-                            {% for song in songs %}
-                                {% if song.mood == mood %}
-                                <p>{{song.title}}</p>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class="mood-card-right">
-                        <p>{{mood.date}}</p>
+<section class="mood-entries">
+    <div class="mood-cards-list">
+        <h4>Mood Entries</h4>
+        {% for mood in moods %}
+        <a href="{% url 'detail' mood.id%}">
+            <div class="mood-card">
+                <div class="mood-card-left">
+                    <div class="mood-logo" style="background-color: {{mood.assign_color}}"></div>
+                    <div class="mood-content">
+                        <h5 class="card-title">{{mood.title}}</h5>
+                        <p class="card-text">{{mood.content}}</p>
+                        <!-- {% for song in songs %}
+                        {% if song.mood == mood %}
+                        <p>{{song.title}}</p>
+                        {% endif %}
+                        {% endfor %} -->
                     </div>
                 </div>
-            </a>
-            {% endfor %}
-        </div>
+                <div class="mood-card-right">
+                    <p>{{mood.date}}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
 
 {% endblock %}

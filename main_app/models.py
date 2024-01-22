@@ -31,6 +31,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   is_active = models.BooleanField(default=True)
   date_joined = models.DateTimeField(default=timezone.now)
   favorites = models.ManyToManyField(Song, default=list)
+  avatar = models.URLField(max_length=200, default="")
 
   USERNAME_FIELD = "email"
   REQUIRED_FIELDS = []
@@ -49,32 +50,32 @@ class Mood(models.Model):
         return self.title
   
   def assign_color(self):
-    match self.title:
-       case "HAPPY":
+       if self.title == "HAPPY":
           return "#97F8C4"
-       case "SAD":
+       elif self.title == "SAD":
           return "#EDEF84"
-       case "ANGRY":
+       elif self.title == "ANGRY":
           return "#FE8392"
-       case "ANXIOUS":
+       elif  self.title == "ANXIOUS":
           return "#F4945E"
-       case "CALM":
+       elif self.title == "CALM":
           return "#97E1F8"
-       case "BORED":
+       elif self.title == "BORED":
           return "#90ADF9"
   
   def get_absolute_url(self):
       return reverse("detail", kwargs={"mood_id": self.pk})
-   
-   
-class MoodPhoto(models.Model):
-   url = models.CharField(max_length=200)
-   mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
-   
-   def __str__(self):
-       return f"Photo for mood_id: {self.mood_id} @{self.url}"
+  
+
+  
+  
+  
+  
 
 
+  
+  
+  
 
 
 

@@ -18,13 +18,16 @@ body {
     background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
 }
 
-@media (max-width: 435px) {
+/* @media (max-width: 435px) {
     body {
         background-color: #101019;
         background-image: none;
     }
-}
+} */
 
+header {
+    width: 100vw;
+}
 
 main {
     flex: 1;
@@ -76,7 +79,6 @@ a:hover {
     position: sticky;
     background: url(https://i.imgur.com/qujolg6.png) center;
     background-size: cover;
-    margin-bottom: 4vmin;
 }
 
 .nav-bar-container {
@@ -133,16 +135,39 @@ footer {
 
 /* MOODS/INDEX */
 
-.mood-card {
-    max-width: 600px;
+.hero {
+    background-color: #21212f;
+    padding: 10vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 6vmin;
+    text-align: center;
+    color: white;
 }
 
-.new-mood-card {
-    border: 1px solid white;
+.form-btn {
+    background-color: #B17B9C;;
+    padding: 16px 20px;
     border-radius: 8px;
-    padding: 2vmin;
-    margin-bottom: 2vmin;
-    min-width: 500px;
+}
+
+.form-btn > p {
+    margin: 0;
+}
+
+.mood-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: fit-content;
+}
+
+.mood-cards-list > h4 {
+    text-align: center;
+    margin-bottom: 16px;
 }
 
 .mood-card {
@@ -151,21 +176,47 @@ footer {
     border: 1px solid white;
     border-radius: 8px;
     padding: 3vmin;
-    min-width: 500px;
+    min-width: 75vmin;
+    gap: 16px;
+}
+
+.mood-card p {
+    margin: 0;
 }
 
 .mood-card-left {
     display: flex;
     gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mood-card-left  {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mood-card-right {
+    font-size: 14px;
+    color: rgb(218, 218, 218);
+}
+
+.card-text {
+    font-weight: lighter
+}
+
+.mood-content {
+    flex-direction: column;
 }
 
 .mood-logo {
-    height: 50px;
-    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
     background-color: rgb(255, 234, 0);
     border-radius: 100%;
 }
-
 
 /* MOODS/DETAILS */
 
@@ -179,7 +230,6 @@ footer {
     width:80%;
    
 }
-
 
 .details-mood-card {
     position: relative;
@@ -205,7 +255,6 @@ footer {
     flex-direction: column;
     align-items: flex-start;
 }
-
 
 
 .card-action {
@@ -304,7 +353,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    max-width: 75vmin;
 }
 
 .mood-options-container {
