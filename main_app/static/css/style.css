@@ -17,13 +17,16 @@ body {
     background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
 }
 
-@media (max-width: 435px) {
+/* @media (max-width: 435px) {
     body {
         background-color: #101019;
         background-image: none;
     }
-}
+} */
 
+header {
+    width: 100vw;
+}
 
 main {
     flex: 1;
@@ -132,16 +135,12 @@ footer {
 
 /* MOODS/INDEX */
 
-.mood-card {
-    max-width: 600px;
-}
-
 .new-mood-card {
     border: 1px solid white;
     border-radius: 8px;
     padding: 2vmin;
     margin-bottom: 2vmin;
-    min-width: 500px;
+    min-width: 75vmin;
 }
 
 .mood-card {
@@ -150,7 +149,7 @@ footer {
     border: 1px solid white;
     border-radius: 8px;
     padding: 3vmin;
-    min-width: 500px;
+    min-width: 75vmin;
 }
 
 .mood-card-left {
@@ -183,7 +182,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    max-width: 75vmin;
 }
 
 .mood-options-container {
