@@ -227,6 +227,7 @@ footer {
     justify-content: center;
     margin-top: 20vh;
     border: 3vmin;
+    width:80%;
    
 }
 
@@ -236,14 +237,16 @@ footer {
     justify-content: space-between;
     background-color: rgb(67, 67, 73);
     border-radius: 20px;
-    padding: 4vmin;
-    width: 80%;
+    padding: 6vmin;
+    width: 100%;
    
 }
 
 .detail-date {
     position: absolute;
     right: 0;
+    top: 0;
+    padding-top: 1vmin;
     padding-right: 2vmin;
 }
 
@@ -278,7 +281,7 @@ footer {
   .custom-audio-controls button {
     font-size: 1.5em;
     color: white;
-    background-color:#101019;
+    background-color:transparent;
     border: none;
     cursor: pointer;
   }
@@ -302,6 +305,7 @@ footer {
 @media only screen and (max-width: 600px) {
     .details-mood-card {
         width: 100%;
+        font-size: .8em;
     }
 }
 
@@ -436,7 +440,7 @@ footer {
 
 table {
     border-collapse: separate;
-    border-spacing: 1.3vmin;
+    border-spacing: 1.5vmin;
 }
 
 
@@ -448,9 +452,15 @@ table tbody a:hover {
     color: rgb(85,139,188);
 }
 
+.delete-song {
+    border: none;
+    background-color: transparent;
+    color:rgb(255,160,222);
+    font-size: .8em;
+}
 
-table tbody td:nth-child(2) { 
-    font-size: 1.5vmin;
+.delete-song:hover {
+    color:rgb(85,139,188)
 }
 
 
@@ -475,7 +485,7 @@ table tbody td:nth-child(2) {
 }
 
 .song-btn {
-   background-color: #101019;
+   background-color: transparent;
     color:rgb(255,160,222);
     border: none;
     margin-top: 2vmin;
