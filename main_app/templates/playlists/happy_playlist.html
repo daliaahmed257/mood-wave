@@ -20,14 +20,53 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'add_song' mood_id=mood.id %}">Add New Song</a>
+    <table>
+        <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td>{{ song.title }} - {{song.artist}}</td>
+                    <td>
+                        {% if song.Hyperlink %}
+                            <a href="{{ song.Hyperlink }}" target="_blank">Listen</a>
+                        {% endif %}
+                    </td>
+                    <td><a href="{% url 'edit_song' song.id playlist %}" style="font-size: .8em;">Edit</a></td>
+                    <td>
+                        <form style="display: inline-block;" method="post" action="{% url 'delete_song' song.id playlist %}">
+                            {% csrf_token %}
+                            <button class="delete-song"type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </section>
+
+    <h3 class="song-header">Add Your Song</h3>
 
 
+    <form class="song-form" method="post" action="{% url 'happy_playlist' %}">
 
-    <form method="post" action="{% url 'happy_playlist' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Song</button>
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+    
+        <div class="form-group">
+            <label for="{{ form.artist.id_for_label }}">Artist:</label>
+            {{ form.artist }}
+        </div>
+    
+        <div class="form-group">
+            <label for="{{ form.Hyperlink.id_for_label }}">Video Link:</label>
+            {{ form.Hyperlink }}
+        </div>
+    
+        <div class="button-container">
+            <button class="song-btn" type="submit">Add Song</button>
+        </div>
     </form>
 {% endblock %}
 
