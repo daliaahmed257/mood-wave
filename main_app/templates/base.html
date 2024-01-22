@@ -38,15 +38,16 @@
           </ul>
         </div>
         {% else %}
-          <div class="nav-item"><a href="{% url 'signup' %}" class="nav-link">Sign Up</a></div>
-          <div class="nav-item"><a href="{% url 'login' %}" class="nav-link">Log In</a></div>
+        <div class="nav-item"><a href="{% url 'signup' %}" class="nav-link">Sign Up</a></div>
+        <div class="nav-item"><a href="{% url 'login' %}" class="nav-link">Log In</a></div>
         {% endif %}
-
+        
         {% if user.is_authenticated %}
-          <form method="post" action="{% url 'logout' %}">
+        <form method="post" action="{% url 'logout' %}">
           {% csrf_token %}
           <button class="logout-btn" type="submit">Log Out</button>
-          </form>
+        </form>
+        <div class="nav-item"><a href="{% url 'user_page' user.id %}" class="nav-link">User Page</a></div>
         {% endif %}
       </div>
     </div>
