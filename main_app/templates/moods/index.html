@@ -19,7 +19,7 @@
             <a href="{% url 'detail' mood.id%}">
                 <div class="mood-card">
                     <div class="mood-card-left">
-                        <div class="mood-logo"></div>
+                            <div class="mood-logo" style="background-color: {{mood.assign_color}}"></div>
                             <p>{{mood.title}}</p>
                             <div class="mood-content">
                                 {% for song in songs %}
