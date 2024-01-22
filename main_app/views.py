@@ -20,7 +20,10 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-  return render(request, 'home.html')
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+        return redirect('login')
 
 def about(request):
   return render(request, 'about.html')
@@ -53,7 +56,6 @@ class MoodDelete(DeleteView):
   model = Mood
   success_url = '/moods'
   
-
 
 def signup(request):
   error_message = ''

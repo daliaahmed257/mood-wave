@@ -49,18 +49,17 @@ class Mood(models.Model):
         return self.title
   
   def assign_color(self):
-    match self.title:
-       case "HAPPY":
+       if self.title == "HAPPY":
           return "#97F8C4"
-       case "SAD":
+       elif self.title == "SAD":
           return "#EDEF84"
-       case "ANGRY":
+       elif self.title == "ANGRY":
           return "#FE8392"
-       case "ANXIOUS":
+       elif  self.title == "ANXIOUS":
           return "#F4945E"
-       case "CALM":
+       elif self.title == "CALM":
           return "#97E1F8"
-       case "BORED":
+       elif self.title == "BORED":
           return "#90ADF9"
   
   def get_absolute_url(self):
