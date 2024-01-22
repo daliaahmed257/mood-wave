@@ -92,15 +92,10 @@ def user_logout(request):
 def moods_detail(request, mood_id):
     mood= Mood.objects.get(id=mood_id)
     songs = Song.objects.filter(mood= mood)
-    selected_song_id = request.session.get('selected_song_id')
-    if selected_song_id is None:
-        selected_song = songs[random.randint(0, songs.count() - 1)]
-        request.session['selected_song_id'] = selected_song.id
-    else:
-        selected_song = Song.objects.get(id=selected_song_id)
+    song = songs[random.randint(0, songs.count()-1)]
     return render(request, 'moods/detail.html', {
         'mood' :mood,
-        'song': selected_song
+        'song': song
         })
   
 def song_file(request, mood_id):

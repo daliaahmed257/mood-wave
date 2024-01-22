@@ -225,7 +225,6 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20vh;
     border: 3vmin;
     width:80%;
    
@@ -281,7 +280,7 @@ footer {
 .custom-audio-controls {
     display: flex;
     align-items: center;
-    margin-top: 5vmin;
+    margin-top: 9vmin;
   }
   
   .custom-audio-controls button {
@@ -306,6 +305,7 @@ footer {
 .artist-info {
     text-align: center;
     justify-content: center;
+    margin-bottom: 3vmin;
 }
 
 .detail-listen {
@@ -322,6 +322,38 @@ footer {
         font-size: .8em;
     }
 }
+
+.add-mood-photo {
+    margin-top: 1vmin;
+    display: flex;
+    
+}
+
+#photo-upload {
+    border: none;
+    color:rgb(255,160,222);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#photo-upload:hover {
+    color:rgb(85,139,188);
+}
+
+.photo-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+.mood-photo {
+    margin: 1vmin;
+    width: 30%;
+    max-height: 20%;
+}
+
 
 
 /* DELETE MOOD CONFIRMATION PAGE */
@@ -346,7 +378,7 @@ footer {
     color: rgb(255,160,222);
     text-decoration: none;
     border: none;
-    background-color: #101019;
+    background-color: transparent;
 }
 
 .yes-delete:hover {

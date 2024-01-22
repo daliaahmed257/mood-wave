@@ -68,5 +68,5 @@ class Mood(models.Model):
   
 
 class MoodPhoto(models.Model):
-   url = models.CharField(max_length=200)
+   url = models.URLField()
    mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
