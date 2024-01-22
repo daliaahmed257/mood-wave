@@ -120,11 +120,13 @@ def song_file(request, mood_id):
 
   
 def happy_playlist(request):
-    try:
-        mood = Mood.objects.get(title='HAPPY')
-        songs = Song.objects.filter(mood=mood)
-    except Mood.DoesNotExist:
+    moods = Mood.objects.filter(title='HAPPY')
+
+    if not moods.exists():
         raise Http404("Happy Playlist does not exist.")
+
+    mood = moods.first()
+    songs = Song.objects.filter(mood=mood)
 
     if request.method == 'POST':
         form = SongForm(request.POST)
@@ -140,11 +142,13 @@ def happy_playlist(request):
     return render(request, 'playlists/happy_playlist.html', context)
 
 def sad_playlist(request):
-    try:
-        mood = Mood.objects.get(title='SAD')
-        songs = Song.objects.filter(mood=mood)
-    except Mood.DoesNotExist:
+    moods = Mood.objects.filter(title='SAD')
+
+    if not moods.exists():
         raise Http404("Sad Playlist does not exist.")
+
+    mood = moods.first()
+    songs = Song.objects.filter(mood=mood)
 
     if request.method == 'POST':
         form = SongForm(request.POST)
@@ -160,11 +164,13 @@ def sad_playlist(request):
     return render(request, 'playlists/sad_playlist.html', context)
 
 def angry_playlist(request):
-    try:
-        mood = Mood.objects.get(title='ANGRY')
-        songs = Song.objects.filter(mood=mood.title)
-    except Mood.DoesNotExist:
+    moods = Mood.objects.filter(title='ANGRY')
+
+    if not moods.exists():
         raise Http404("Angry Playlist does not exist.")
+
+    mood = moods.first()
+    songs = Song.objects.filter(mood=mood)
 
     if request.method == 'POST':
         form = SongForm(request.POST)
@@ -181,11 +187,13 @@ def angry_playlist(request):
 
 
 def calm_playlist(request):
-    try:
-        mood = Mood.objects.get(title='CALM')
-        songs = Song.objects.filter(mood=mood)
-    except Mood.DoesNotExist:
+    moods = Mood.objects.filter(title='CALM')
+
+    if not moods.exists():
         raise Http404("Calm Playlist does not exist.")
+
+    mood = moods.first()
+    songs = Song.objects.filter(mood=mood)
 
     if request.method == 'POST':
         form = SongForm(request.POST)
@@ -201,11 +209,13 @@ def calm_playlist(request):
     return render(request, 'playlists/calm_playlist.html', context)
 
 def bored_playlist(request):
-    try:
-        mood = Mood.objects.get(title='BORED')
-        songs = Song.objects.filter(mood=mood)
-    except Mood.DoesNotExist:
+    moods = Mood.objects.filter(title='BORED')
+
+    if not moods.exists():
         raise Http404("Bored Playlist does not exist.")
+
+    mood = moods.first()
+    songs = Song.objects.filter(mood=mood)
 
     if request.method == 'POST':
         form = SongForm(request.POST)
@@ -221,11 +231,13 @@ def bored_playlist(request):
     return render(request, 'playlists/bored_playlist.html', context)
 
 def anxious_playlist(request):
-    try:
-        mood = Mood.objects.get(title='ANXIOUS')
-        songs = Song.objects.filter(mood=mood)
-    except Mood.DoesNotExist:
+    moods = Mood.objects.filter(title='ANXIOUS')
+
+    if not moods.exists():
         raise Http404("Anxious Playlist does not exist.")
+
+    mood = moods.first()
+    songs = Song.objects.filter(mood=mood)
 
     if request.method == 'POST':
         form = SongForm(request.POST)
