@@ -5,6 +5,7 @@
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     font-family: 'Viga', sans-serif;
+
 }
 
 body {
@@ -67,7 +68,7 @@ a:hover {
 
 .error-message {
     color: rgb(248, 80, 80);
-}
+
 
 /* BASE */
 
@@ -168,12 +169,122 @@ footer {
 
 /* MOODS/DETAILS */
 
+.container-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20vh;
+    border: 3vmin;
+   
+}
+
+
 .details-mood-card {
+    position: relative;
     display: flex;
     justify-content: space-between;
-    background-color: rgb(220, 219, 219);
-    border-radius: 8px;
-    padding: 3vmin;
+    background-color: rgb(67, 67, 73);
+    border-radius: 20px;
+    padding: 4vmin;
+    width: 80%;
+   
+}
+
+.detail-date {
+    position: absolute;
+    right: 0;
+    padding-right: 2vmin;
+}
+
+
+
+.card-action {
+    color: rgb(255,160,222);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 2vmin;
+    padding-bottom: 1vmin;
+     > a:first-child {
+        margin-right: 1vmin;
+     }
+     > a:first-child:hover {
+        color: rgb(85,139,188);
+     }
+
+     > a:last-child:hover {
+        color: rgb(85,139,188);
+     }
+  
+}
+
+
+.custom-audio-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 5vmin;
+  }
+  
+  .custom-audio-controls button {
+    font-size: 1.5em;
+    color: white;
+    background-color:#101019;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .progress-bar {
+    height: 2px;
+    width: 300px; 
+    background-color: white;
+    margin: 0 10px;
+  }
+  
+  .custom-audio-controls audio {
+    display: none;
+  }
+
+.artist-info {
+    text-align: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .details-mood-card {
+        width: 100%;
+    }
+}
+
+
+/* DELETE MOOD CONFIRMATION PAGE */
+
+.delete-title {
+    text-align: center;
+    margin-top: 20vmin;
+}
+
+.delete-mood {
+    text-align: center;
+    color: rgb(255,160,222);
+}
+
+.delete-mood:hover {
+   color: rgb(85,139,188);
+
+}
+
+
+.yes-delete {
+    color: rgb(255,160,222);
+    text-decoration: none;
+    border: none;
+    background-color: #101019;
+}
+
+.yes-delete:hover {
+    color: rgb(85,139,188);
+
 }
 
 
@@ -267,6 +378,69 @@ footer {
 
 /* PLAYLISTS */
 
-.playlist {
+.playlist-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 1.3vmin;
+}
+
+
+table tbody a {
+    color: rgb(255,160,222);
+}
+
+table tbody a:hover {
+    color: rgb(85,139,188);
+}
+
+
+table tbody td:nth-child(2) { 
+    font-size: 1.5vmin;
+}
+
+
+/*add a song form*/
+
+.song-header {
+    margin-top: 5vmin;
+    margin-bottom: 2vmin;
+}
+
+.song-form label {
+    display: inline-block;
+    width: 100px;
+}
+
+.song-form input {
+    background-color: transparent;
+    border: .1vmin solid white;
+    margin: 1vmin;
+    width: 200px;
+   
+}
+
+.song-btn {
+   background-color: #101019;
+    color:rgb(255,160,222);
+    border: none;
+    margin-top: 2vmin;
+   
+}
+
+.song-btn:hover {
+    color: rgb(85,139,188);
+
+}
+
+
+
+/* .playlist {
     border: 2px solid black;
 }
+
