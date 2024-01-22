@@ -149,7 +149,8 @@ def sad_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/sad_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'sad_playlist'}
+    return render(request, 'playlists/sad_playlist.html', context)
 
 def angry_playlist(request):
     try:
@@ -245,3 +246,31 @@ def add_song(request, mood_id):
         form = SongForm()
 
     return render(request, 'add_song.html', {'form': form})
+
+def delete_song(request, song_id, playlist):
+    try:
+        song = Song.objects.get(id=song_id)
+        song.delete()
+    except Song.DoesNotExist:
+        print("Song Does Not Exist")
+    
+    return redirect(playlist)
+
+def edit_song(request, song_id, playlist):
+    try:
+        song = Song.objects.get(id=song_id)
+        mood = song.mood
+
+        if request.method == 'POST':
+            form = SongForm(request.POST, instance=song)
+            if form.is_valid():
+                form.save()
+                return redirect(playlist)  # Redirect back to the appropriate playlist URL
+        else:
+            form = SongForm(instance=song)
+
+        return render(request, 'edit_song.html', {'form': form, 'song': song, 'mood': mood, 'playlist': playlist})
+    except Song.DoesNotExist:
+        print("Song Does Not Exist")
+    
+    return redirect(playlist)  # Redirect back to the appropriate playlist URL

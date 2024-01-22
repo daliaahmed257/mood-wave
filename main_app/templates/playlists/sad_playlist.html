@@ -10,11 +10,11 @@
                 {% if song.url %}
                     (<a href="{{ song.url }}" target="_blank">Listen</a>)
                 {% endif %}
-                <form style="display: inline-block;" method="post" action="{% url 'delete_song' song.id %}">
+                <a href="{% url 'edit_song' song.id playlist %}" style="margin-left: 5px;">Edit</a>    
+                <form style="display: inline-block;" method="post" action="{% url 'delete_song' song.id playlist %}">
                     {% csrf_token %}
                     <button type="submit">Delete</button>
                 </form>
-                <a href="{% url 'edit_song' song.id %}" style="margin-left: 5px;">Edit</a>
             </li>
         {% endfor %}
     </ul>
