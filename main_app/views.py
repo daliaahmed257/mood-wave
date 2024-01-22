@@ -88,10 +88,14 @@ def user_logout(request):
   
   
 def moods_detail(request, mood_id):
-  mood= Mood.objects.get(id=mood_id)
-  songs = Song.objects.filter(mood= mood)
-  song = songs[random.randint(0, songs.count()-1)]
-  return render(request, 'moods/detail.html', {'mood' :mood, 'song': song})
+    mood= Mood.objects.get(id=mood_id)
+    songs = Song.objects.filter(mood= mood)
+    song = songs[random.randint(0, songs.count()-1)]
+    print(mood, songs)
+    return render(request, 'moods/detail.html', {
+        'mood' :mood,
+        'song': song
+        })
   
 def song_file(request, mood_id):
     # song-file will be the “name” attribute on the <input type=“file”>
@@ -119,9 +123,10 @@ def song_file(request, mood_id):
 
 
 def happy_playlist(request):
+    mood_selection = 'HAPPY'
     try:
-        mood = Mood.objects.get(title='HAPPY')
-        songs = Song.objects.filter(mood=mood)
+        mood = Mood.objects.filter(title=mood_selection)
+        songs = Song.objects.filter(mood=mood_selection)
     except Mood.DoesNotExist:
         raise Http404("Happy Playlist does not exist.")
 
@@ -161,7 +166,7 @@ def sad_playlist(request):
 def angry_playlist(request):
     try:
         mood = Mood.objects.get(title='ANGRY')
-        songs = Song.objects.filter(mood=mood)
+        songs = Song.objects.filter(mood=mood.title)
     except Mood.DoesNotExist:
         raise Http404("Angry Playlist does not exist.")
 
