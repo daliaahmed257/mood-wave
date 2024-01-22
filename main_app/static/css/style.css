@@ -200,6 +200,12 @@ footer {
     padding-right: 2vmin;
 }
 
+.mood-card-left {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 
 
 .card-action {

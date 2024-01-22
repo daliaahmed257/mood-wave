@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Mood, Song, CustomUser
+from .models import Mood, Song, CustomUser, MoodPhoto
 from .forms import CustomUserCreationForm, CustomUserChangeForm, SongForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 
@@ -297,3 +297,18 @@ def edit_song(request, song_id, playlist):
         print("Song Does Not Exist")
     
     return redirect(playlist)  # Redirect back to the appropriate playlist URL
+
+def add_moodPhoto(request, mood_id):
+    mood_photo_file = request.FILES.get('mood-photo-file', None)
+    if mood_photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + mood_photo_file.name[mood_photo_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(mood_photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            MoodPhoto.objects.create(url=url, mood_id=mood_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('detail', mood_id=mood_id)

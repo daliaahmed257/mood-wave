@@ -15,7 +15,21 @@
                 <h3> {{mood.title}}</h3>
                 <p>Notes: {{mood.content}}</p>
             </div>
-        </div>
+            {% for moodPhoto in mood.moodPhoto_set.all %}
+            <img src="{{moodPhoto.url}}">
+          {% empty %}
+            <div>No Photos Uploaded</div>
+          {% endfor %}
+          <form action="{% url 'add_moodPhoto' mood.id %}" enctype="multipart/form-data" method="POST" >
+            {% csrf_token %}
+            <input type="file" name="mood_photo-file">
+            <br><br>
+            <button type="submit" class="btn">Upload Photo</button>
+        </form>
+          </div>
+         
+        
+       
         <div class="mood-card-right">
             <div class="detail-date">
             <p>{{mood.date|date:"F d, Y" }}</p>
@@ -28,7 +42,7 @@
     </div>
     
     <div class="custom-audio-controls">
-        <button id="playButton">&#9654;</button>
+        <button id="playButtonAudio">&#9654;</button>
         <div class="progress-bar"></div>
         <audio id="audioPlayer" controls autoplay >
           <source src="{{ song.url }}" type="audio/mp3">
@@ -45,6 +59,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
   const audioPlayer = document.getElementById('audioPlayer');
+  const playButton = document.getElementById('playButtonAudio');
 
   playButton.addEventListener('click', function () {
     if (audioPlayer.paused) {

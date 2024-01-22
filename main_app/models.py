@@ -65,15 +65,16 @@ class Mood(models.Model):
   
   def get_absolute_url(self):
       return reverse("detail", kwargs={"mood_id": self.pk})
-  
-  
-  
-  
+   
+   
+class MoodPhoto(models.Model):
+   url = models.CharField(max_length=200)
+   mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
+   
+   def __str__(self):
+       return f"Photo for mood_id: {self.mood_id} @{self.url}"
 
 
-  
-  
-  
 
 
 
