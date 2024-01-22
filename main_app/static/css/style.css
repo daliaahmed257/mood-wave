@@ -13,8 +13,17 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #101019;
+    background-color: #2b4162;
+    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
 }
+
+@media (max-width: 435px) {
+    body {
+        background-color: #101019;
+        background-image: none;
+    }
+}
+
 
 main {
     flex: 1;
@@ -44,6 +53,20 @@ a:hover {
 .page-title {
     text-align: center;
     margin-bottom: 4vmin;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    padding: 8px 16px;
+}
+
+.btn:hover {
+    background-color: #B17B9C;
+}
+
+.error-message {
+    color: rgb(248, 80, 80);
 }
 
 /* BASE */
@@ -156,7 +179,90 @@ footer {
 
 /* NEW MOOD FORM */
 
+.mood-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
 
+.mood-options-container {
+    display: flex;
+    gap: 16px;
+}
+
+#all-moods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+#all-moods > input:checked + div {
+    border: 2px solid white;
+    padding: 8px;
+    border-radius: 100%;
+}
+
+#all-moods > input {
+    visibility: hidden;
+    position: absolute;
+}
+
+
+.mood-option {
+    height: 8vmin;
+    width: 8vmin;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+
+.happy {
+    background-color: #97F8C4;
+}
+
+.calm {
+    background-color: #97E1F8
+}
+
+.bored {
+    background-color: #90ADF9;
+}
+
+.sad {
+    background-color: #EDEF84;
+}
+
+.anxious {
+    background-color: #F4945E;
+}
+
+.angry {
+    background-color: #FE8392;
+}
+
+.notes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+
+}
+
+.field {
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 8px;
+    color: white;
+}
+
+.mood-form-btn {
+    width: fit-content;
+    margin: auto;
+} 
 
 
 /* PLAYLISTS */
