@@ -88,38 +88,45 @@ def user_logout(request):
   
   
 def moods_detail(request, mood_id):
-  mood= Mood.objects.get(id=mood_id)
-  songs = Song.objects.filter(mood= mood)
-  song = songs[random.randint(0, songs.count()-1)]
-  return render(request, 'moods/detail.html', {'mood' :mood, 'song': song})
+    mood= Mood.objects.get(id=mood_id)
+    songs = Song.objects.filter(mood= mood)
+    song = songs[random.randint(0, songs.count()-1)]
+    print(mood, songs)
+    return render(request, 'moods/detail.html', {
+        'mood' :mood,
+        'song': song
+        })
   
 def song_file(request, mood_id):
     # song-file will be the “name” attribute on the <input type=“file”>
-    song_file = request.FILES.get('song-file', None)
-    if song_file:
-        s3 = boto3.client('s3')
+
+  song_file = request.FILES.get('song-file', None)
+  if song_file:
+      s3 = boto3.client('s3')
         # need a unique “key” for S3 / needs image file extension too
-        key = uuid.uuid4().hex[:6] + song_file.name[song_file.name.rfind('.'):]
+      key = uuid.uuid4().hex[:6] + song_file.name[song_file.name.rfind('.'):]
         # just in case something goes wrong
-        try:
-            bucket = os.environ['S3_BUCKET']
-            s3.upload_fileobj(song_file, bucket, key)
+      try:
+        bucket = os.environ['S3_BUCKET']
+        s3.upload_fileobj(song_file, bucket, key)
             # build the full url string
-            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+        url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
             # we can assign to cat_id or cat (if you have a cat object)
-            Song.objects.create(url=url, mood_id=mood_id)
-        except Exception as e:
-            print('An error occurred uploading file to S3')
-            print(e)
-    return redirect('detail', mood_id=mood_id)
+        Song.objects.create(url=url, mood_id=mood_id)
+      except Exception as e:
+        print('An error occurred uploading file to S3')
+        print(e)
+  return redirect('detail', mood_id=mood_id) 
+
   
 
 
 
 def happy_playlist(request):
+    mood_selection = 'HAPPY'
     try:
-        mood = Mood.objects.get(title='HAPPY')
-        songs = Song.objects.filter(mood=mood)
+        mood = Mood.objects.filter(title=mood_selection)
+        songs = Song.objects.filter(mood=mood_selection)
     except Mood.DoesNotExist:
         raise Http404("Happy Playlist does not exist.")
 
@@ -133,7 +140,8 @@ def happy_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/happy_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'happy_playlist'}
+    return render(request, 'playlists/happy_playlist.html', context)
 
 def sad_playlist(request):
     try:
@@ -152,12 +160,13 @@ def sad_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/sad_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'sad_playlist'}
+    return render(request, 'playlists/sad_playlist.html', context)
 
 def angry_playlist(request):
     try:
         mood = Mood.objects.get(title='ANGRY')
-        songs = Song.objects.filter(mood=mood)
+        songs = Song.objects.filter(mood=mood.title)
     except Mood.DoesNotExist:
         raise Http404("Angry Playlist does not exist.")
 
@@ -171,7 +180,8 @@ def angry_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/angry_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'angry_playlist'}
+    return render(request, 'playlists/angry_playlist.html', context)
 
 
 def calm_playlist(request):
@@ -191,7 +201,8 @@ def calm_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/calm_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'calm_playlist'}
+    return render(request, 'playlists/calm_playlist.html', context)
 
 def bored_playlist(request):
     try:
@@ -210,7 +221,8 @@ def bored_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/bored_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'bored_playlist'}
+    return render(request, 'playlists/bored_playlist.html', context)
 
 def anxious_playlist(request):
     try:
@@ -229,7 +241,8 @@ def anxious_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/anxious_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'anxious_playlist'}
+    return render(request, 'playlists/anxious_playlist.html', context)
 
 def add_song(request, mood_id):
     try:
@@ -248,3 +261,31 @@ def add_song(request, mood_id):
         form = SongForm()
 
     return render(request, 'add_song.html', {'form': form})
+
+def delete_song(request, song_id, playlist):
+    try:
+        song = Song.objects.get(id=song_id)
+        song.delete()
+    except Song.DoesNotExist:
+        print("Song Does Not Exist")
+    
+    return redirect(playlist)
+
+def edit_song(request, song_id, playlist):
+    try:
+        song = Song.objects.get(id=song_id)
+        mood = song.mood
+
+        if request.method == 'POST':
+            form = SongForm(request.POST, instance=song)
+            if form.is_valid():
+                form.save()
+                return redirect(playlist)  # Redirect back to the appropriate playlist URL
+        else:
+            form = SongForm(instance=song)
+
+        return render(request, 'edit_song.html', {'form': form, 'song': song, 'mood': mood, 'playlist': playlist})
+    except Song.DoesNotExist:
+        print("Song Does Not Exist")
+    
+    return redirect(playlist)  # Redirect back to the appropriate playlist URL
