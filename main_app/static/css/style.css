@@ -340,12 +340,6 @@ footer {
     color:rgb(85,139,188);
 }
 
-.photo-input {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
 
 
 .mood-photo {
