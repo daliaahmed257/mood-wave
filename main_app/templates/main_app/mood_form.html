@@ -2,12 +2,64 @@
 
 {% block content %}
 
-<form action="" method="POST">
+<!-- <form action="" method="POST">
   {% csrf_token %}
   <table>
     {{form.as_table}}
   </table>
   <input type="submit" value="Add Mood">
+</form> -->
+
+<h1 class="page-title">How are you feeling?</h1>
+
+<form class="mood-form" action="" method="POST">
+  {% csrf_token %}
+  <div>
+    <label class="mood-label">Mood:</label><br>
+    <br>
+    <div class="mood-options-container">
+    {% for value, label in form.title.field.choices %}
+      {% if value %}
+      <label id="all-moods" for="id_{{ form.title.name }}_{{ forloop.counter }}">
+        <input type="radio" name="{{ form.title.name }}" id="id_{{ form.title.name }}_{{ forloop.counter }}" value="{{ value }}" {% if form.title.value == value %}checked{% endif %}>
+        {% if label == 'Happy' %}
+        <div class="mood-selector"><div class="mood-option happy"></div></div>
+        {% elif label == 'Calm' %}
+        <div class="mood-selector"><div class="mood-option calm"></div></div>
+        {% elif label == 'Sad' %}
+        <div class="mood-selector"><div class="mood-option sad"></div></div>
+        {% elif label == 'Bored' %}
+        <div class="mood-selector"><div class="mood-option bored"></div></div>
+        {% elif label == 'Anxious' %}
+        <div class="mood-selector"><div class="mood-option anxious"></div></div>
+        {% elif label == 'Angry' %}
+        <div class="mood-selector"><div class="mood-option angry"></div></div>
+        {% endif %}
+        <p>{{ label }}</p>
+      </label>
+      <br>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+  <br>
+
+  {% if form.title.errors %}
+    <p class="error-message">*please select a mood</p>
+  {% endif %}
+
+  <div class="notes">
+    <label for="{{ form.content.id_for_label }}">Add note:</label>
+    <textarea class="field" name="{{ form.content.name }}" id="{{ form.content.id_for_label }}" rows="4" cols="50">{{ form.content.value }}</textarea><br>
+  </div>
+
+  {% if form.content.errors %}
+    <p class="error-message">*please add a note</p>
+  {% endif %}
+
+  <input class="btn mood-form-btn" type="submit" value="Play my mood">
+
 </form>
+
 
 {% endblock %}

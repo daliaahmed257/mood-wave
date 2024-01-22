@@ -36,7 +36,10 @@ def moods_index(request):
 
 @login_required
 def playlists(request):
-  return render(request, 'playlists.html')
+  songs = Song.objects.all()
+  return render(request, 'playlists.html', {
+    'songs': songs
+  })
 
 class CreateMood(CreateView):
   model = Mood
@@ -92,6 +95,7 @@ def moods_detail(request, mood_id):
   
 def song_file(request, mood_id):
     # song-file will be the “name” attribute on the <input type=“file”>
+
   song_file = request.FILES.get('song-file', None)
   if song_file:
       s3 = boto3.client('s3')
@@ -109,6 +113,7 @@ def song_file(request, mood_id):
         print('An error occurred uploading file to S3')
         print(e)
   return redirect('detail', mood_id=mood_id) 
+
   
 
 

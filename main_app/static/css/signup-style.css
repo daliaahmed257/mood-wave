@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Viga', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: url(https://i.imgur.com/Kehc0bz.jpg) center/cover no-repeat;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+.page-title {
+    text-align: center;
+    margin-bottom: 4vmin;
+}
+
+.btn {
+    background-color: #B17B9C;
+    padding: 8px 16px;
+}
+
+/* SIGN OUT BASE */
+
+header {
+    margin-bottom: 0;
+}
+
+.nav-bar {
+    position: sticky;
+    margin-bottom: 0;
+    color: white;
+}
+
+.nav-bar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vmin;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    font-weight:500
+}
+
+.nav-item {
+    padding: 8px 16px;
+}
+
+footer {
+    position: sticky;
+    bottom: 0;
+    text-align: right;;
+    padding: 12px;
+    margin-top: 56px;
+    color: white;
+}
+
+@media (max-width: 575.98px) {
+    .nav-bar-container {
+        flex-direction: column;
+    }
+}
+
+
+/* Sign Up */
+
+.sign-up-container {
+    display: flex;
+    min-width: 32vmin;
+}
+
+.signup-title {
+    margin-bottom: 32px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+
+}
+
+.field {
+    background-color: transparent;
+    border: 1px solid black;
+    width: 48vmin;
+    padding: 8px;
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+}

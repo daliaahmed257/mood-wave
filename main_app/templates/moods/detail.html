@@ -7,7 +7,7 @@
 
 
 
-<section class="container content">
+<section class="container-content">
     <div class="details-mood-card">
         <div class="mood-card-left">
             <div class="mood-logo"></div>
@@ -17,7 +17,9 @@
             </div>
         </div>
         <div class="mood-card-right">
-            <p>{{mood.date}}</p>
+            <div class="detail-date">
+            <p>{{mood.date|date:"F d, Y" }}</p>
+        </div>
             <div class="card-action">
                 <a href="{% url 'moods_update' mood.id %}">Edit</a>
                 <a href="{% url 'moods_delete' mood.id %}">Delete</a>
@@ -25,17 +27,37 @@
         </div>
     </div>
     
-    <div class="sound-bar">
-    
-        <audio controls autoplay >
-            <source src="{{ song.url }}" type="audio/mp3" >
+    <div class="custom-audio-controls">
+        <button id="playButton">&#9654;</button>
+        <div class="progress-bar"></div>
+        <audio id="audioPlayer" controls autoplay >
+          <source src="{{ song.url }}" type="audio/mp3">
         </audio>
+      </div>
+            <div class="artist-info">
             <p>Title: {{song.title}}</p>
             <p>Artist: {{song.artist}}</p>
-        
+        </div>
     </div>
     
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const audioPlayer = document.getElementById('audioPlayer');
+
+  playButton.addEventListener('click', function () {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      playButton.innerHTML = '&#9646;&#9646;'; 
+    } else {
+      audioPlayer.pause();
+      playButton.innerHTML = '&#9654;'; 
+    }
+  });
+
+});
+</script>
 
 {% endblock %}
 

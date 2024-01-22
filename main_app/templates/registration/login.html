@@ -1,14 +1,34 @@
-{% extends 'base.html' %}
+{% extends 'signout-base.html' %}
 {% block content %}
 
-<h1>Log In</h1>
+<!-- <h1>Log In</h1> -->
 
 <!-- Add the login form -->
-<form method="POST" action="{% url 'login' %}">
+<!-- <form method="POST" action="{% url 'login' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="hidden" name="next" value="{{ next }}">
     <button type="submit" class="btn">Log In</button>
-  </form>
+  </form> -->
+
+  <section class="signup-container">
+    <h1 class="signup-title">Log In</h1>
+    <p class="error-message">{{ error_message }}</p>
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-fields">
+            <div class="form-group">
+              <input class="field" type="text" name="username" placeholder="Email">
+            </div>
+        
+            <div class="form-group">
+              <input class="field" type="password" name="password" placeholder="Password">
+            </div>
+        </div>
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit" class="btn">Log In</button>
+    </form>
+</section>
+
 
 {% endblock %}

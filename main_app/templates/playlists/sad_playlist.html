@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section class="playlist-container">
     <h2>Sad Playlist</h2>
 
     <ul>
@@ -22,9 +23,11 @@
     <a href="{% url 'add_song' mood_id=mood.id %}">Add New Song</a>
 
 
+
     <form method="post" action="{% url 'sad_playlist' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Add Song</button>
     </form>
 {% endblock %}
+
