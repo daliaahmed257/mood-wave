@@ -19,18 +19,22 @@
             <a href="{% url 'detail' mood.id%}">
                 <div class="mood-card">
                     <div class="mood-card-left">
-                            <div class="mood-logo" style="background-color: {{mood.assign_color}}"></div>
-                            <p>{{mood.title}}</p>
-                            <div class="mood-content">
-                                {% for song in songs %}
-                                    {% if song.mood == mood %}
-                                    <p>{{song.title}}</p>
+                        <div class="mood-logo" style="background-color: {{mood.assign_color}}"></div>
+                        <p>{{mood.title}}</p>
+                        <div class="mood-content">
+                            {% for song in songs %}
+                                {% if song.mood == mood %}
+                                <p>{{song.title}}</p>
                                 {% endif %}
-                                {% endfor %}
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="mood-card-right">
                         <p>{{mood.date}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
 
 {% endblock %}

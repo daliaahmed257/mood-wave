@@ -51,17 +51,17 @@ class Mood(models.Model):
   def assign_color(self):
     match self.title:
        case "HAPPY":
-          return "yellow"
+          return "#97F8C4"
        case "SAD":
-          return "blue"
+          return "#EDEF84"
        case "ANGRY":
-          return "red"
+          return "#FE8392"
        case "ANXIOUS":
-          return "black"
+          return "#F4945E"
        case "CALM":
-          return "green"
+          return "#97E1F8"
        case "BORED":
-          return "brown"
+          return "#90ADF9"
   
   def get_absolute_url(self):
       return reverse("detail", kwargs={"mood_id": self.pk})
