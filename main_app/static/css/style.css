@@ -4,7 +4,8 @@
     box-sizing: border-box;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-font-family: 'Viga', sans-serif;
+    font-family: 'Viga', sans-serif;
+
 }
 
 body {
@@ -13,12 +14,25 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #101019;
+    background-color: #2b4162;
+    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
 }
+
+@media (max-width: 435px) {
+    body {
+        background-color: #101019;
+        background-image: none;
+    }
+}
+
 
 main {
     flex: 1;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 a {
@@ -41,6 +55,20 @@ a:hover {
     text-align: center;
     margin-bottom: 4vmin;
 }
+
+.btn {
+    background-color: white;
+    color: black;
+    padding: 8px 16px;
+}
+
+.btn:hover {
+    background-color: #B17B9C;
+}
+
+.error-message {
+    color: rgb(248, 80, 80);
+
 
 /* BASE */
 
@@ -88,6 +116,7 @@ footer {
     text-align: right;
     color: rgb(169, 168, 168);
     padding: 12px;
+    background-color: #101019;
 }
 
 @media (max-width: 767.98px) {
@@ -96,11 +125,15 @@ footer {
     }
 }
 
+/* ABOUT */
 
+.about-container {
+    max-width: 600px;
+}
 
 /* MOODS/INDEX */
 
-.mood-cards-list {
+.mood-card {
     max-width: 600px;
 }
 
@@ -109,7 +142,7 @@ footer {
     border-radius: 8px;
     padding: 2vmin;
     margin-bottom: 2vmin;
-    max-width: 600px;
+    min-width: 500px;
 }
 
 .mood-card {
@@ -118,6 +151,7 @@ footer {
     border: 1px solid white;
     border-radius: 8px;
     padding: 3vmin;
+    min-width: 500px;
 }
 
 .mood-card-left {
@@ -132,19 +166,281 @@ footer {
     border-radius: 100%;
 }
 
+
 /* MOODS/DETAILS */
 
+.container-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20vh;
+    border: 3vmin;
+   
+}
+
+
 .details-mood-card {
+    position: relative;
     display: flex;
     justify-content: space-between;
-    background-color: rgb(220, 219, 219);
-    border-radius: 8px;
-    padding: 3vmin;
+    background-color: rgb(67, 67, 73);
+    border-radius: 20px;
+    padding: 4vmin;
+    width: 80%;
+   
 }
+
+.detail-date {
+    position: absolute;
+    right: 0;
+    padding-right: 2vmin;
+}
+
+
+
+.card-action {
+    color: rgb(255,160,222);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 2vmin;
+    padding-bottom: 1vmin;
+     > a:first-child {
+        margin-right: 1vmin;
+     }
+     > a:first-child:hover {
+        color: rgb(85,139,188);
+     }
+
+     > a:last-child:hover {
+        color: rgb(85,139,188);
+     }
+  
+}
+
+
+.custom-audio-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 5vmin;
+  }
+  
+  .custom-audio-controls button {
+    font-size: 1.5em;
+    color: white;
+    background-color:#101019;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .progress-bar {
+    height: 2px;
+    width: 300px; 
+    background-color: white;
+    margin: 0 10px;
+  }
+  
+  .custom-audio-controls audio {
+    display: none;
+  }
+
+.artist-info {
+    text-align: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .details-mood-card {
+        width: 100%;
+    }
+}
+
+
+/* DELETE MOOD CONFIRMATION PAGE */
+
+.delete-title {
+    text-align: center;
+    margin-top: 20vmin;
+}
+
+.delete-mood {
+    text-align: center;
+    color: rgb(255,160,222);
+}
+
+.delete-mood:hover {
+   color: rgb(85,139,188);
+
+}
+
+
+.yes-delete {
+    color: rgb(255,160,222);
+    text-decoration: none;
+    border: none;
+    background-color: #101019;
+}
+
+.yes-delete:hover {
+    color: rgb(85,139,188);
+
+}
+
+
+/* NEW MOOD FORM */
+
+.mood-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.mood-options-container {
+    display: flex;
+    gap: 16px;
+}
+
+#all-moods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+#all-moods > input:checked + div {
+    border: 2px solid white;
+    padding: 8px;
+    border-radius: 100%;
+}
+
+#all-moods > input {
+    visibility: hidden;
+    position: absolute;
+}
+
+
+.mood-option {
+    height: 8vmin;
+    width: 8vmin;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+
+.happy {
+    background-color: #97F8C4;
+}
+
+.calm {
+    background-color: #97E1F8
+}
+
+.bored {
+    background-color: #90ADF9;
+}
+
+.sad {
+    background-color: #EDEF84;
+}
+
+.anxious {
+    background-color: #F4945E;
+}
+
+.angry {
+    background-color: #FE8392;
+}
+
+.notes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+
+}
+
+.field {
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 8px;
+    color: white;
+}
+
+.mood-form-btn {
+    width: fit-content;
+    margin: auto;
+} 
 
 
 /* PLAYLISTS */
 
-.playlist {
+.playlist-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 1.3vmin;
+}
+
+
+table tbody a {
+    color: rgb(255,160,222);
+}
+
+table tbody a:hover {
+    color: rgb(85,139,188);
+}
+
+
+table tbody td:nth-child(2) { 
+    font-size: 1.5vmin;
+}
+
+
+/*add a song form*/
+
+.song-header {
+    margin-top: 5vmin;
+    margin-bottom: 2vmin;
+}
+
+.song-form label {
+    display: inline-block;
+    width: 100px;
+}
+
+.song-form input {
+    background-color: transparent;
+    border: .1vmin solid white;
+    margin: 1vmin;
+    width: 200px;
+   
+}
+
+.song-btn {
+   background-color: #101019;
+    color:rgb(255,160,222);
+    border: none;
+    margin-top: 2vmin;
+   
+}
+
+.song-btn:hover {
+    color: rgb(85,139,188);
+
+}
+
+
+
+/* .playlist {
     border: 2px solid black;
 }
+

@@ -1,13 +1,19 @@
  {% extends 'base.html' %}
 
 {% block content %}
+
+
+
+<div class="delete-title">
   <h1>Delete Mood</h1>
+  <h4>Are you sure you want to delete {{ object.title }} mood entry?</h4>
+</div>
 
-  <h4>Are you sure you want to delete {{ object.name }} ?</h4>
-
-  <form action="{% url 'moods_delete' pk=object.pk %}" method="POST">
+  <form class="delete-mood" action="{% url 'moods_delete' pk=object.pk %}" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Yes - Delete" class="btn">
+    <input class="yes-delete" type="submit" value="Yes - Delete" class="btn">
     <a href="{% url 'detail' mood.id %}">Cancel</a>
   </form>
+
+
 {% endblock %} 
