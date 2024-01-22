@@ -9,7 +9,7 @@
             <li>
                 {{ song.title }} - {{ song.artist }}
                 {% if song.url %}
-                    (<a href="{{ song.url }}" target="_blank">Listen</a>)
+                    (<a href="{{ song.Hyperlink }}" target="_blank">Listen</a>)
                 {% endif %}
                 <a href="{% url 'edit_song' song.id playlist %}" style="margin-left: 5px;">Edit</a>    
                 <form style="display: inline-block;" method="post" action="{% url 'delete_song' song.id playlist %}">

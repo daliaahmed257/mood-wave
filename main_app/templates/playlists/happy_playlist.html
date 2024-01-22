@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section class="playlist-container">
+    <h2>Happy Playlist</h2>
+
     <ul>
         {% for song in songs %}
             <li>
                 {{ song.title }} - {{ song.artist }}
                 {% if song.url %}
-                    (<a href="{{ song.url }}" target="_blank">Listen</a>)
+                    (<a href="{{ song.Hyperlink }}" target="_blank">Listen</a>)
                 {% endif %}
                 <a href="{% url 'edit_song' song.id playlist %}" style="margin-left: 5px;">Edit</a>    
                 <form style="display: inline-block;" method="post" action="{% url 'delete_song' song.id playlist %}">
@@ -18,6 +21,7 @@
     </ul>
 
     <a href="{% url 'add_song' mood_id=mood.id %}">Add New Song</a>
+
 
 
     <form method="post" action="{% url 'happy_playlist' %}">

@@ -119,14 +119,10 @@ def song_file(request, mood_id):
   return redirect('detail', mood_id=mood_id) 
 
   
-
-
-
 def happy_playlist(request):
-    mood_selection = 'HAPPY'
     try:
-        mood = Mood.objects.filter(title=mood_selection)
-        songs = Song.objects.filter(mood=mood_selection)
+        mood = Mood.objects.get(title='HAPPY')
+        songs = Song.objects.filter(mood=mood)
     except Mood.DoesNotExist:
         raise Http404("Happy Playlist does not exist.")
 
