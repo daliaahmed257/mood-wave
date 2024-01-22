@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Viga', sans-serif;
 }
 
 body {
@@ -114,46 +116,3 @@ form {
     width: 100%;
     max-width: 400px;
 }
-
-
-/* ABOUT */
-
-.about-container {
-    max-width: 600px;
-}
-
-
-/*HOME PAGE*/
-
-.wave-text {
-    margin: 0;
-    font-size: 2em;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  
-  .animate-left {
-    animation: slideFromLeft 1s ease-out;
-  }
-  
-  .animate-right {
-    animation: slideFromRight 1s ease-out;
-  }
-  
-  @keyframes slideFromLeft {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideFromRight {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
