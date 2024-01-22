@@ -231,7 +231,7 @@ footer {
   
   .custom-audio-controls button {
     font-size: 1.5em;
-    color: black;
+    color: white;
     background-color:transparent;
     border: none;
     cursor: pointer;
@@ -240,7 +240,7 @@ footer {
   .progress-bar {
     height: 2px;
     width: 300px; 
-    background-color: black;
+    background-color: white;
     margin: 0 10px;
   }
   
@@ -256,6 +256,7 @@ footer {
 @media only screen and (max-width: 600px) {
     .details-mood-card {
         width: 100%;
+        font-size: .8em;
     }
 }
 

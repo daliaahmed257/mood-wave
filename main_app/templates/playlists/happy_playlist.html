@@ -2,23 +2,7 @@
 
 {% block content %}
 <section class="playlist-container">
-    <h2>Happy Playlist</h2>
-
-    <ul>
-        {% for song in songs %}
-            <li>
-                {{ song.title }} - {{ song.artist }}
-                {% if song.url %}
-                    (<a href="{{ song.Hyperlink }}" target="_blank">Listen</a>)
-                {% endif %}
-                <a href="{% url 'edit_song' song.id playlist %}" style="margin-left: 5px;">Edit</a>    
-                <form style="display: inline-block;" method="post" action="{% url 'delete_song' song.id playlist %}">
-                    {% csrf_token %}
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+    <h2>{{mood.title}} Playlist</h2>
 
     <table>
         <tbody>
