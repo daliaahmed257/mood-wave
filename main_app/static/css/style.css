@@ -308,6 +308,14 @@ footer {
     justify-content: center;
 }
 
+.detail-listen {
+    color:rgb(255,160,222);
+}
+
+.detail-listen:hover {
+    color:rgb(85,139,188);
+}
+
 @media only screen and (max-width: 600px) {
     .details-mood-card {
         width: 100%;

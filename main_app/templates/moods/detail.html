@@ -5,8 +5,6 @@
 
 {% block content %}
 
-
-
 <section class="container-content">
     <div class="details-mood-card">
         <div class="mood-card-left">
@@ -15,21 +13,18 @@
                 <h3> {{mood.title}}</h3>
                 <p>Notes: {{mood.content}}</p>
             </div>
-            {% for moodPhoto in mood.moodPhoto_set.all %}
-            <img src="{{moodPhoto.url}}">
+            {% for moodphoto in mood.moodphoto_set.all %}
+            <img src="{{moodphoto.url}}">
           {% empty %}
             <div>No Photos Uploaded</div>
           {% endfor %}
-          <form action="{% url 'add_moodPhoto' mood.id %}" enctype="multipart/form-data" method="POST" >
+          <form action="{% url 'add_moodphoto' mood.id %}" enctype="multipart/form-data" method="POST" >
             {% csrf_token %}
             <input type="file" name="mood_photo-file">
             <br><br>
             <button type="submit" class="btn">Upload Photo</button>
         </form>
           </div>
-         
-        
-       
         <div class="mood-card-right">
             <div class="detail-date">
             <p>{{mood.date|date:"F d, Y" }}</p>
@@ -51,6 +46,7 @@
             <div class="artist-info">
             <p>Title: {{song.title}}</p>
             <p>Artist: {{song.artist}}</p>
+            <a class="detail-listen" href="{{ song.Hyperlink }}" target="_blank">Listen Here</a>
         </div>
     </div>
     

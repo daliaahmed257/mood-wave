@@ -321,3 +321,19 @@ def user_detail(request, user_id):
     return render(request, 'user/user_detail', {
         'user': user
     })
+    
+
+def add_moodphoto(request,mood_id):
+    moodphoto_file = request.FILES.get('moodphoto_file', None)
+    if moodphoto_file:
+        s3=boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + moodphoto_file.name[moodphoto_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_MOOD_BUCKET']
+            s3.upload_fileobj(moodphoto_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            MoodPhoto.objects.create(url=url, mood_id=mood_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('detail', mood_id=mood_id)

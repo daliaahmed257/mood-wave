@@ -67,15 +67,6 @@ class Mood(models.Model):
       return reverse("detail", kwargs={"mood_id": self.pk})
   
 
-  
-  
-  
-  
-
-
-  
-  
-  
-
-
-
+class MoodPhoto(models.Model):
+   url = models.CharField(max_length=200)
+   mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
