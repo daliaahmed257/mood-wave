@@ -29,6 +29,7 @@ def about(request):
 def moods_index(request):
   songs=Song.objects.all()
   moods=Mood.objects.filter(user = request.user.id)
+  print(moods)
   return render(request, 'moods/index.html', {
     'songs': songs,
     'moods': moods,
@@ -118,12 +119,15 @@ def song_file(request, mood_id):
         print(e)
   return redirect('detail', mood_id=mood_id) 
 
+def mood_not_found(request):
+    return render(request, 'mood_not_found.html')
+
   
 def happy_playlist(request):
     moods = Mood.objects.filter(title='HAPPY')
 
     if not moods.exists():
-        raise Http404("Happy Playlist does not exist.")
+        return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -145,7 +149,7 @@ def sad_playlist(request):
     moods = Mood.objects.filter(title='SAD')
 
     if not moods.exists():
-        raise Http404("Sad Playlist does not exist.")
+        return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -167,8 +171,8 @@ def angry_playlist(request):
     moods = Mood.objects.filter(title='ANGRY')
 
     if not moods.exists():
-        raise Http404("Angry Playlist does not exist.")
-
+        return render(request, 'mood_not_found.html')
+    
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
 
@@ -190,7 +194,7 @@ def calm_playlist(request):
     moods = Mood.objects.filter(title='CALM')
 
     if not moods.exists():
-        raise Http404("Calm Playlist does not exist.")
+      return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -212,7 +216,7 @@ def bored_playlist(request):
     moods = Mood.objects.filter(title='BORED')
 
     if not moods.exists():
-        raise Http404("Bored Playlist does not exist.")
+      return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -234,7 +238,7 @@ def anxious_playlist(request):
     moods = Mood.objects.filter(title='ANXIOUS')
 
     if not moods.exists():
-        raise Http404("Anxious Playlist does not exist.")
+      return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)

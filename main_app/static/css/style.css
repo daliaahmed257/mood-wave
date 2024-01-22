@@ -417,6 +417,10 @@ table tbody a:hover {
 
 /*add a song form*/
 
+input:focus {
+    color: white;
+}
+
 .song-header {
     margin-top: 5vmin;
     margin-bottom: 2vmin;
