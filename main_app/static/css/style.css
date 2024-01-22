@@ -69,7 +69,7 @@ a:hover {
 .error-message {
     color: rgb(248, 80, 80);
 
-
+}
 /* BASE */
 
 .nav-bar {
@@ -336,7 +336,7 @@ footer {
 }
 
 .calm {
-    background-color: #97E1F8
+    background-color: #97E1F8;
 }
 
 .bored {
@@ -437,10 +437,3 @@ table tbody td:nth-child(2) {
     color: rgb(85,139,188);
 
 }
-
-
-
-/* .playlist {
-    border: 2px solid black;
-}
-
