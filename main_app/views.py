@@ -130,7 +130,8 @@ def happy_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/happy_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'happy_playlist'}
+    return render(request, 'playlists/happy_playlist.html', context)
 
 def sad_playlist(request):
     try:
@@ -169,7 +170,8 @@ def angry_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/angry_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'angry_playlist'}
+    return render(request, 'playlists/angry_playlist.html', context)
 
 
 def calm_playlist(request):
@@ -189,7 +191,8 @@ def calm_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/calm_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'calm_playlist'}
+    return render(request, 'playlists/calm_playlist.html', context)
 
 def bored_playlist(request):
     try:
@@ -208,7 +211,8 @@ def bored_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/bored_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'bored_playlist'}
+    return render(request, 'playlists/bored_playlist.html', context)
 
 def anxious_playlist(request):
     try:
@@ -227,7 +231,8 @@ def anxious_playlist(request):
     else:
         form = SongForm()
 
-    return render(request, 'playlists/anxious_playlist.html', {'songs': songs, 'mood': mood, 'form': form})
+    context = {'songs': songs, 'mood': mood, 'form': form, 'playlist': 'anxious_playlist'}
+    return render(request, 'playlists/anxious_playlist.html', context)
 
 def add_song(request, mood_id):
     try:
