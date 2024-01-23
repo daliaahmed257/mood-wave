@@ -331,11 +331,6 @@ footer {
     }
 }
 
-.add-mood-photo {
-    margin-top: 1vmin;
-    display: flex;
-    
-}
 
 #photo-upload {
     border: none;
@@ -555,7 +550,65 @@ input:focus {
 
 }
 
-/* mood_not_found */
-.not-found {
-    font-weight: lighter;
+
+/* EDIT song form*/
+
+.save-changes {
+    background-color: transparent;
+    color:rgb(255,160,222);
+    border: none;
+   
 }
+
+.save-changes:hover {
+    color: rgb(85,139,188);
+}
+
+/* User Profile */
+
+.profile-image {
+    width: 30vmin; 
+    height: 30vmin; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-bottom: 3vmin;
+  }
+
+  h4 {
+    font-size: 1.5em;
+  
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .custom-upload-btn {
+    background-color: transparent;
+    color: rgb(255,160,222);
+    border: none;
+    cursor: pointer;
+  }
+
+
+  label {
+    display: inline-block;
+    background-color: transparent;
+    color: rgb(255,160,222);
+    padding:.8vmin;
+   border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+
+  label:hover {
+    color: rgb(85,139,188);
+  }
+
+.custom-upload-btn:hover {
+    color: rgb(85,139,188);
+}
+
+.favorite-header {
+    margin-top: 5vmin;

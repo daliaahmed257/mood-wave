@@ -25,6 +25,6 @@ urlpatterns = [
   path('add_song/<int:mood_id>/', views.add_song, name='add_song'),
   path('delete_song/<int:song_id>/<str:playlist>/', views.delete_song, name='delete_song'),
   path('edit_song/<int:song_id>/<str:playlist>/', views.edit_song, name='edit_song'),
-  path('moods/<int:mood_id>/add_moodphoto/', views.add_moodphoto, name='add_moodphoto'),
+   path('moods/<int:mood_id>/add_moodphoto/', views.add_moodphoto, name='add_moodphoto'),
   path('mood_not_found/', views.mood_not_found, name='mood_not_found'),
 ]

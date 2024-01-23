@@ -1,12 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Edit User Information</h1>
+<h1>Your Profile</h1>
 
-  <form action="{% url 'add_photo' user.id%}" enctype="multipart/form-data" method="POST">
-    {% csrf_token %}
-    <input type="file" name="photo-file">
-    <br><br>
-    <button type="submit">Upload Pfp</button>
-  </form>
+
+   <img class="profile-image"  src="{{ user.avatar}}">
+   <p> User: {{ user.email }}</p>
+   <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST">
+     {% csrf_token %}
+     <label for="photo-file" class="custom-upload-btn">Choose File</label>
+     <input type="file" name="photo-file" id="photo-file" style="display: none;">
+     <br><br>
+     <button type="submit" class="custom-upload-btn">Upload Pic</button>
+   </form>
+
+  <h2 class="favorite-header">Your Songs</h2>
+
+  {% if user.favorites.all %}
+  <ul>
+    {% for favorite in user.favorites %}
+      <li>{{ song.title }} - {{ song.artist }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No songs added yet!</p>
+{% endif %}
+  
+
+
 {% endblock %}

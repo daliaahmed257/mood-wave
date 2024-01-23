@@ -40,25 +40,28 @@
 
 <h3 class="song-header">Add Your Song</h3>
 
-<form class="song-form" method="post" action="{% url 'sad_playlist' %}">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="{{ form.title.id_for_label }}">Title:</label>
-        {{ form.title }}
-    </div>
 
-    <div class="form-group">
-        <label for="{{ form.artist.id_for_label }}">Artist:</label>
-        {{ form.artist }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.Hyperlink.id_for_label }}">Video Link:</label>
-        {{ form.Hyperlink }}
-    </div>
-
-    <div class="button-container">
-        <button class="song-btn" type="submit">Add Song</button>
-    </div>
-</form>
+    <form class="song-form" method="post" action="{% url 'sad_playlist' %}">
+        {% csrf_token %}
+        <div>
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+    
+        <div>
+            <label for="{{ form.artist.id_for_label }}">Artist:</label>
+            {{ form.artist }}
+        </div>
+    
+        <div>
+            <label for="{{ form.Hyperlink.id_for_label }}">Video Link:</label>
+            {{ form.Hyperlink }}
+        </div>
+    
+        <div class="button-container">
+            <button class="song-btn" type="submit">Add Song</button>
+        </div>
+    </form>
 {% endblock %}
+
+

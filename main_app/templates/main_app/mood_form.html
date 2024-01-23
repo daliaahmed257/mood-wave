@@ -12,7 +12,7 @@
 
 <h1 class="page-title">How are you feeling?</h1>
 
-<form class="mood-form" action="" method="POST">
+<form class="mood-form" action="" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <div>
     <label class="mood-label">Mood:</label><br>
@@ -56,6 +56,8 @@
   {% if form.content.errors %}
     <p class="error-message">*please add a note</p>
   {% endif %}
+
+
 
   <input class="btn mood-form-btn" type="submit" value="Play my mood">
   

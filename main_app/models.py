@@ -40,6 +40,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
   def __str__(self):
     return self.email
+ 
+
+
   
 class Mood(models.Model):
   title = models.CharField(max_length=7, choices=MOOD_CHOICES, verbose_name="How are you feeling?")
@@ -71,3 +74,5 @@ class Mood(models.Model):
 class MoodPhoto(models.Model):
    url = models.URLField()
    mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
+  
+
