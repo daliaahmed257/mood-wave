@@ -1,2 +1,9 @@
-<h2>Mood Not Found</h2>
-<p>The requested mood does not exist. You can add it <a href="{% url 'create' %}">here</a>.</p>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="not-found">No playlist found</h2>
+<p class="not-found">The requested mood does not exist yet.</p>
+<a class="link" href="{% url 'create' %}">Add your mood</a>
+
+{% endblock %}

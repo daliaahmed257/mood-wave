@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block hero_section %}
+{% block index-main %}
 <section class="hero container-fluid">
     <h2>Listen to music that matches your mood today</h2>
     <a href="{% url 'create'%}">
@@ -9,11 +9,8 @@
         </div>
     </a>
 </section>
-{% endblock %}
 
-{% block content %}
-
-<section class="mood-entries">
+<section class="index-main">
     <div class="mood-cards-list">
         <h4>Mood Entries</h4>
         {% for mood in moods %}
