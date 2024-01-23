@@ -16,4 +16,3 @@ class SongForm(ModelForm):
     class Meta:
         model = Song
         exclude = ['mood','url']
-        

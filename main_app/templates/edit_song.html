@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Edit Song</h2>
-    <form method="post" action="">
+    <h2>Edit Your Song</h2>
+    <form class="song-form" method="post" action="">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
+        <div>
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+    
+        <div>
+            <label for="{{ form.artist.id_for_label }}">Artist:</label>
+            {{ form.artist }}
+        </div>
+    
+        <div>
+            <label for="{{ form.Hyperlink.id_for_label }}">Video Link:</label>
+            {{ form.Hyperlink }}
+        </div>
+        <button class="save-changes" type="submit">Save Changes</button>
     </form>
-    <a href="{% url playlist %}">Cancel</a>
+    <a class="song-btn"  href="{% url playlist %}">Cancel</a>
 {% endblock %}

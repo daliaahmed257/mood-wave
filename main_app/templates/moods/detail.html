@@ -8,7 +8,7 @@
 <div class="custom-audio-controls">
   <button id="playButtonAudio">&#9654;</button>
   <div class="progress-bar"></div>
-  <audio id="audioPlayer" controls>
+  <audio id="audioPlayer" controls autoplay>
     <source src="{{ song.url }}" type="audio/mp3">
   </audio>
 </div>
@@ -45,11 +45,11 @@
       <input class="photo-input" type="file" name="moodphoto_file">
       <button id="photo-upload" type="submit">Upload Photo</button>
   </form> -->
-    <div>
+    <!-- <div>
       {% for moodphoto in mood.moodphoto_set.all %}
           <img class="mood-photo" src="{{moodphoto.url}}">
           {% endfor %}
-        </div>
+        </div> -->
        
     
    

@@ -345,6 +345,14 @@ footer {
 
 
 
+.user-avatar {
+    border: 1px solid black;
+    height: 5vmin;
+    width: 5vmin;
+    border-radius: 50%;
+}
+
+
 /* DELETE MOOD CONFIRMATION PAGE */
 
 .delete-title {
@@ -501,6 +509,10 @@ table tbody a:hover {
 
 /*add a song form*/
 
+input:focus {
+    color: white;
+}
+
 .song-header {
     margin-top: 5vmin;
     margin-bottom: 2vmin;
@@ -530,4 +542,67 @@ table tbody a:hover {
 .song-btn:hover {
     color: rgb(85,139,188);
 
+}
+
+/* EDIT song form*/
+
+.save-changes {
+    background-color: transparent;
+    color:rgb(255,160,222);
+    border: none;
+   
+}
+
+.save-changes:hover {
+    color: rgb(85,139,188);
+}
+
+/* User Profile */
+
+.profile-image {
+    width: 30vmin; 
+    height: 30vmin; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-bottom: 3vmin;
+  }
+
+  h4 {
+    font-size: 1.5em;
+  
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .custom-upload-btn {
+    background-color: transparent;
+    color: rgb(255,160,222);
+    border: none;
+    cursor: pointer;
+  }
+
+
+  label {
+    display: inline-block;
+    background-color: transparent;
+    color: rgb(255,160,222);
+    padding:.8vmin;
+   border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+
+  label:hover {
+    color: rgb(85,139,188);
+  }
+
+.custom-upload-btn:hover {
+    color: rgb(85,139,188);
+}
+
+.favorite-header {
+    margin-top: 5vmin;
 }
