@@ -12,7 +12,7 @@
 
 <h1 class="page-title">How are you feeling?</h1>
 
-<form class="mood-form" action="" method="POST">
+<form class="mood-form" action="" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <div>
     <label class="mood-label">Mood:</label><br>
@@ -56,6 +56,11 @@
   {% if form.content.errors %}
     <p class="error-message">*please add a note</p>
   {% endif %}
+
+  <div class="add-mood-photo">
+    <label for="id_moodphoto_file">Add Photo:</label><br>
+    <input class="photo-input" type="file" name="moodphoto_file" id="id_moodphoto_file">
+  </div>
 
   <input class="btn mood-form-btn" type="submit" value="Play my mood">
 

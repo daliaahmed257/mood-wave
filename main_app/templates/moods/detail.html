@@ -39,12 +39,12 @@
         </div>
      
     </div>
-    <form class="add-mood-photo" action="{% url 'add_moodphoto' mood.id %}" enctype="multipart/form-data" method="POST" >
+    <!-- <form class="add-mood-photo" action="{% url 'add_moodphoto' mood.id %}" enctype="multipart/form-data" method="POST" >
       {% csrf_token %}
      
       <input class="photo-input" type="file" name="moodphoto_file">
       <button id="photo-upload" type="submit">Upload Photo</button>
-  </form>
+  </form> -->
     <div>
       {% for moodphoto in mood.moodphoto_set.all %}
           <img class="mood-photo" src="{{moodphoto.url}}">
