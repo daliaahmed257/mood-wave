@@ -16,10 +16,10 @@
 
   <h2 class="favorite-header">Your Songs</h2>
 
-  {% if user.favorites.all %}
+  {% if user.favorites %}
   <ul>
-    {% for favorite in user.favorites %}
-      <li>{{ song.title }} - {{ song.artist }}</li>
+    {% for favorite in user.favorites.all %}
+      <li>{{ favorite.title }} - {{ favorite.artist }}</li>
     {% endfor %}
   </ul>
 {% else %}

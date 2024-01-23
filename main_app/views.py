@@ -132,9 +132,11 @@ def happy_playlist(request):
     if request.method == 'POST':
         form = SongForm(request.POST)
         if form.is_valid():
+            user = CustomUser.objects.get(id=request.user.id)
             new_song = form.save(commit=False)
             new_song.mood = mood
             new_song.save()
+            user.favorites.add(new_song)
             return redirect('happy_playlist')
     else:
         form = SongForm()
@@ -154,9 +156,11 @@ def sad_playlist(request):
     if request.method == 'POST':
         form = SongForm(request.POST)
         if form.is_valid():
+            user = CustomUser.objects.get(id=request.user.id)
             new_song = form.save(commit=False)
             new_song.mood = mood
             new_song.save()
+            user.favorites.add(new_song)
             return redirect('sad_playlist')
     else:
         form = SongForm()
@@ -176,9 +180,11 @@ def angry_playlist(request):
     if request.method == 'POST':
         form = SongForm(request.POST)
         if form.is_valid():
+            user = CustomUser.objects.get(id=request.user.id)
             new_song = form.save(commit=False)
             new_song.mood = mood
             new_song.save()
+            user.favorites.add(new_song)
             return redirect('angry_playlist')
     else:
         form = SongForm()
@@ -199,9 +205,11 @@ def calm_playlist(request):
     if request.method == 'POST':
         form = SongForm(request.POST)
         if form.is_valid():
+            user = CustomUser.objects.get(id=request.user.id)
             new_song = form.save(commit=False)
             new_song.mood = mood
             new_song.save()
+            user.favorites.add(new_song)
             return redirect('calm_playlist')
     else:
         form = SongForm()
@@ -221,9 +229,11 @@ def bored_playlist(request):
     if request.method == 'POST':
         form = SongForm(request.POST)
         if form.is_valid():
+            user = CustomUser.objects.get(id=request.user.id)
             new_song = form.save(commit=False)
             new_song.mood = mood
             new_song.save()
+            user.favorites.add(new_song)
             return redirect('bored_playlist')
     else:
         form = SongForm()
@@ -243,9 +253,11 @@ def anxious_playlist(request):
     if request.method == 'POST':
         form = SongForm(request.POST)
         if form.is_valid():
+            user = CustomUser.objects.get(id=request.user.id)
             new_song = form.save(commit=False)
             new_song.mood = mood
             new_song.save()
+            user.favorites.add(new_song)
             return redirect('anxious_playlist')
     else:
         form = SongForm()
@@ -265,6 +277,8 @@ def add_song(request, mood_id):
             new_song = form.save(commit=False)
             new_song.mood = mood
             new_song.save()
+            user = CustomUser.objects.get(id=request.user.id)
+            user.favorites.add(new_song)
             return redirect(f'{mood.title.lower()}_playlist')  # Redirect to the specific playlist page
     else:
         form = SongForm()
