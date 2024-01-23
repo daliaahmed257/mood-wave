@@ -225,7 +225,6 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20vh;
     border: 3vmin;
     width:80%;
    
@@ -248,6 +247,12 @@ footer {
     top: 0;
     padding-top: 1vmin;
     padding-right: 2vmin;
+}
+
+.mood-card-left {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 
@@ -275,7 +280,7 @@ footer {
 .custom-audio-controls {
     display: flex;
     align-items: center;
-    margin-top: 5vmin;
+    margin-top: 9vmin;
   }
   
   .custom-audio-controls button {
@@ -300,6 +305,15 @@ footer {
 .artist-info {
     text-align: center;
     justify-content: center;
+    margin-bottom: 3vmin;
+}
+
+.detail-listen {
+    color:rgb(255,160,222);
+}
+
+.detail-listen:hover {
+    color:rgb(85,139,188);
 }
 
 @media only screen and (max-width: 600px) {
@@ -308,6 +322,32 @@ footer {
         font-size: .8em;
     }
 }
+
+.add-mood-photo {
+    margin-top: 1vmin;
+    display: flex;
+    
+}
+
+#photo-upload {
+    border: none;
+    color:rgb(255,160,222);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#photo-upload:hover {
+    color:rgb(85,139,188);
+}
+
+
+
+.mood-photo {
+    margin: 1vmin;
+    width: 30%;
+    max-height: 20%;
+}
+
 
 
 .user-avatar {
@@ -340,7 +380,7 @@ footer {
     color: rgb(255,160,222);
     text-decoration: none;
     border: none;
-    background-color: #101019;
+    background-color: transparent;
 }
 
 .yes-delete:hover {

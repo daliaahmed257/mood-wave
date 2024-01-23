@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Mood, Song, CustomUser
+from .models import Mood, Song, CustomUser, MoodPhoto
 from .forms import CustomUserCreationForm, CustomUserChangeForm, SongForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 
@@ -94,7 +94,6 @@ def moods_detail(request, mood_id):
     mood= Mood.objects.get(id=mood_id)
     songs = Song.objects.filter(mood= mood)
     song = songs[random.randint(0, songs.count()-1)]
-    print(mood, songs)
     return render(request, 'moods/detail.html', {
         'mood' :mood,
         'song': song
@@ -324,3 +323,21 @@ def user_detail(request, user_id):
     return render(request, 'user/user_detail.html', {
         'user': user
     })
+    
+
+def add_moodphoto(request,mood_id):
+    moodphoto_file = request.FILES.get('moodphoto_file', None)
+    print(moodphoto_file)
+    if moodphoto_file:
+        s3=boto3.client('s3')
+        
+        key = uuid.uuid4().hex[:6] + moodphoto_file.name[moodphoto_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_MOOD_BUCKET']
+            s3.upload_fileobj(moodphoto_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            MoodPhoto.objects.create(url=url, mood_id=mood_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('detail', mood_id=mood_id)
