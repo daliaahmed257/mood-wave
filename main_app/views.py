@@ -11,11 +11,11 @@ from .models import Mood, Song, CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm, SongForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 
-from django.http import Http404
+
 
 from django.contrib.auth.decorators import login_required
 import random
-from django.http import HttpResponse
+
 
 
 # Create your views here.
