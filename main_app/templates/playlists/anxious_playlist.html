@@ -2,36 +2,46 @@
 
 {% block content %}
 <section class="playlist-container">
-    <h2>{{mood.title}} Playlist</h2>
-
+    <h2>{{ mood.title }} Playlist</h2>
     <table>
+        <thead>
+            <tr>
+                <th>Title - Artist</th>
+                <th>Listen</th>
+                {% if user.is_authenticated %}
+                    <th>Edit</th>
+                    <th>Delete</th>
+                {% endif %}
+            </tr>
+        </thead>
         <tbody>
             {% for song in songs %}
                 <tr>
-                    <td>{{ song.title }} - {{song.artist}}</td>
+                    <td>{{ song.title }} - {{ song.artist }}</td>
                     <td>
                         {% if song.Hyperlink %}
                             <a href="{{ song.Hyperlink }}" target="_blank">Listen</a>
                         {% endif %}
                     </td>
-                    <td><a href="{% url 'edit_song' song.id playlist %}" style="font-size: .8em;">Edit</a></td>
-                    <td>
-                        <form style="display: inline-block;" method="post" action="{% url 'delete_song' song.id playlist %}">
-                            {% csrf_token %}
-                            <button class="delete-song"type="submit">Delete</button>
-                        </form>
-                    </td>
+                    {% if user.is_authenticated and not song.url %}
+                        <td><a href="{% url 'edit_song' song.id playlist %}" style="font-size: .8em;">Edit</a></td>
+                        <td>
+                            <form style="display: inline-block;" method="post" action="{% url 'delete_song' song.id playlist %}">
+                                {% csrf_token %}
+                                <button class="delete-song" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    </section>
+</section>
 
-    <h3 class="song-header">Add Your Song</h3>
+<h3 class="song-header">Add Your Song</h3>
 
-
-    <form class="song-form" method="post" action="{% url 'anxious_playlist' %}">
-        {% csrf_token %}
+<form class="song-form" method="post" action="{% url 'anxious_playlist' %}">
+    {% csrf_token %}
         <div>
             <label for="{{ form.title.id_for_label }}">Title:</label>
             {{ form.title }}
@@ -51,4 +61,5 @@
             <button class="song-btn" type="submit">Add Song</button>
         </div>
     </form>
+
 {% endblock %}

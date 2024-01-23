@@ -18,13 +18,6 @@ body {
     background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
 }
 
-/* @media (max-width: 435px) {
-    body {
-        background-color: #101019;
-        background-image: none;
-    }
-} */
-
 header {
     width: 100vw;
 }
@@ -45,6 +38,10 @@ a {
 
 a:hover {
     text-decoration: none;
+}
+
+.link {
+    color: rgb(255,160,222);
 }
 
 .content {
@@ -113,7 +110,6 @@ a:hover {
 }
 
 footer {
-    position: sticky;
     bottom: 0;
     text-align: right;
     color: rgb(169, 168, 168);
@@ -148,6 +144,10 @@ footer {
     color: white;
 }
 
+.hero > h2 {
+    font-weight: lighter;
+}
+
 .form-btn {
     background-color: #B17B9C;;
     padding: 16px 20px;
@@ -158,11 +158,23 @@ footer {
     margin: 0;
 }
 
+.form-btn:hover {
+    background-color: rgb(145, 88, 123);
+}
+
+.index-main {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    color: white;
+    padding: 0 24px 0 24px;
+    margin: 0 0 56px 0;
+}
+
 .mood-cards-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    max-width: fit-content;
 }
 
 .mood-cards-list > h4 {
@@ -176,8 +188,12 @@ footer {
     border: 1px solid white;
     border-radius: 8px;
     padding: 3vmin;
-    min-width: 75vmin;
+    min-width: 60vmin;
     gap: 16px;
+}
+
+.mood-card:hover {
+    background-color: rgb(0, 0, 0, .5);
 }
 
 .mood-card p {
@@ -227,7 +243,6 @@ footer {
     justify-content: center;
     border: 3vmin;
     width:80%;
-   
 }
 
 .details-mood-card {
@@ -247,12 +262,6 @@ footer {
     top: 0;
     padding-top: 1vmin;
     padding-right: 2vmin;
-}
-
-.mood-card-left {
-    display:flex;
-    flex-direction: column;
-    align-items: flex-start;
 }
 
 
@@ -275,7 +284,6 @@ footer {
      }
   
 }
-
 
 .custom-audio-controls {
     display: flex;
@@ -418,14 +426,12 @@ footer {
     position: absolute;
 }
 
-
 .mood-option {
     height: 8vmin;
     width: 8vmin;
     border-radius: 100%;
     cursor: pointer;
 }
-
 
 .happy {
     background-color: #97F8C4;
@@ -544,6 +550,7 @@ input:focus {
 
 }
 
+
 /* EDIT song form*/
 
 .save-changes {
@@ -605,4 +612,3 @@ input:focus {
 
 .favorite-header {
     margin-top: 5vmin;
-}
