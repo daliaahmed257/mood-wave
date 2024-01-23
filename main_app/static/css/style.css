@@ -40,6 +40,10 @@ a:hover {
     text-decoration: none;
 }
 
+.link {
+    color: rgb(255,160,222);
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -549,4 +553,9 @@ input:focus {
 .song-btn:hover {
     color: rgb(85,139,188);
 
+}
+
+/* mood_not_found */
+.not-found {
+    font-weight: lighter;
 }
