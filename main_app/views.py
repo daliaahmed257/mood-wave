@@ -47,7 +47,7 @@ def playlists(request):
 
 class CreateMood(CreateView):
   model = Mood
-  fields = ["title", "content"]
+  fields = ["title", "content", "user"]
   
 class MoodUpdate(UpdateView):
   model = Mood
@@ -306,22 +306,21 @@ def edit_song(request, song_id, playlist):
 
 def add_photo(request, user_id):
     photo_file = request.FILES.get('photo-file', None)
+    print(photo_file)
     if photo_file:
         s3 = boto3.client('s3')
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            bucket = os.environ['S3_BUCKET']
-            s3.upload_fileobj(photo_file, bucket, key)
-            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            user = request.user
-            user.avatar = url
-        except Exception as e:
-            print('An error occurred uploading file to s3')
-            print(e)
+        bucket = os.environ['S3_BUCKET']
+        s3.upload_fileobj(photo_file, bucket, key)
+        url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+        user = CustomUser.objects.get(id=user_id)
+        user.avatar = url
+        user.save()
+        print("uploading")
     return redirect('home')
 
 def user_detail(request, user_id):
     user = CustomUser.objects.get(id=user_id)
-    return render(request, 'user/user_detail', {
+    return render(request, 'user/user_detail.html', {
         'user': user
     })
