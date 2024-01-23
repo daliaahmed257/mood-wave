@@ -32,7 +32,6 @@ def about(request):
 def moods_index(request):
   songs=Song.objects.all()
   moods=Mood.objects.filter(user = request.user.id)
-  print(moods)
   return render(request, 'moods/index.html', {
     'songs': songs,
     'moods': moods,
@@ -315,7 +314,6 @@ def edit_song(request, song_id, playlist):
 
 def add_photo(request, user_id):
     photo_file = request.FILES.get('photo-file', None)
-    print(photo_file)
     if photo_file:
         s3 = boto3.client('s3')
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
@@ -325,7 +323,6 @@ def add_photo(request, user_id):
         user = CustomUser.objects.get(id=user_id)
         user.avatar = url
         user.save()
-        print("uploading")
     return redirect('home')
 
 def user_detail(request, user_id):
@@ -337,7 +334,6 @@ def user_detail(request, user_id):
 
 def add_moodphoto(request,mood_id):
     moodphoto_file = request.FILES.get('moodphoto_file', None)
-    print(moodphoto_file)
     if moodphoto_file:
         s3=boto3.client('s3')
         
