@@ -23,17 +23,35 @@
       <label id="all-moods" for="id_{{ form.title.name }}_{{ forloop.counter }}">
         <input type="radio" name="{{ form.title.name }}" id="id_{{ form.title.name }}_{{ forloop.counter }}" value="{{ value }}" {% if form.title.value == value %}checked{% endif %}>
         {% if label == 'Happy' %}
-        <div class="mood-selector"><div class="mood-option happy"></div></div>
+        <div class="mood-selector">
+          <!-- <div class="mood-option happy"></div> -->
+          <img class="mood-option happy" src="https://i.imgur.com/NR5FeJG.png" alt="happy">
+        </div>
         {% elif label == 'Calm' %}
-        <div class="mood-selector"><div class="mood-option calm"></div></div>
+        <div class="mood-selector">
+          <!-- <div class="mood-option calm"></div> -->
+          <img class="mood-option calm" src="https://i.imgur.com/j9flUF2.png" alt="calm">
+        </div>
         {% elif label == 'Sad' %}
-        <div class="mood-selector"><div class="mood-option sad"></div></div>
+        <div class="mood-selector">
+          <!-- <div class="mood-option sad"></div> -->
+          <img class="mood-option sad" src="https://i.imgur.com/Q1uRKUo.png" alt="sad">
+        </div>
         {% elif label == 'Bored' %}
-        <div class="mood-selector"><div class="mood-option bored"></div></div>
+        <div class="mood-selector">
+          <!-- <div class="mood-option bored"></div> -->
+          <img class="mood-option bored" src="https://i.imgur.com/CdLNSu3.png" alt="bored">
+        </div>
         {% elif label == 'Anxious' %}
-        <div class="mood-selector"><div class="mood-option anxious"></div></div>
+        <div class="mood-selector">
+          <!-- <div class="mood-option anxious"></div> -->
+          <img class="mood-option anxious" src="https://i.imgur.com/1yz5zdv.png" alt="anxious">
+        </div>
         {% elif label == 'Angry' %}
-        <div class="mood-selector"><div class="mood-option angry"></div></div>
+        <div class="mood-selector">
+          <!-- <div class="mood-option angry"></div> -->
+          <img class="mood-option angry" src="https://i.imgur.com/CZLd11g.png" alt="angry">
+        </div>
         {% endif %}
         <p>{{ label }}</p>
       </label>
