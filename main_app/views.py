@@ -47,7 +47,7 @@ def playlists(request):
 
 class CreateMood(CreateView):
   model = Mood
-  fields = ["title", "content", "user"]
+  fields = ["title", "content"]
   
 class MoodUpdate(UpdateView):
   model = Mood
