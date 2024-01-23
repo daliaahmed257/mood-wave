@@ -350,6 +350,14 @@ footer {
 
 
 
+.user-avatar {
+    border: 1px solid black;
+    height: 5vmin;
+    width: 5vmin;
+    border-radius: 50%;
+}
+
+
 /* DELETE MOOD CONFIRMATION PAGE */
 
 .delete-title {
@@ -505,6 +513,10 @@ table tbody a:hover {
 
 
 /*add a song form*/
+
+input:focus {
+    color: white;
+}
 
 .song-header {
     margin-top: 5vmin;
