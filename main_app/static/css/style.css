@@ -185,7 +185,6 @@ footer {
     border-radius: 8px;
     padding: 3vmin;
     min-width: 60vmin;
-    /* max-width: 60vmin; */
     gap: 16px;
 }
 
@@ -231,56 +230,6 @@ footer {
     border-radius: 100%;
 }
 
-/* MOOD CHART */
-
-.chart-wrapper {
-    margin-top: 60px;
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 8px;
-    height: 250px;
-}
-
-.chart-wrapper > h5 {
-    text-align: center;
-    margin-bottom: 24px;
-    font-weight: lighter;
-}
-
-.chart {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    list-style-type: none;
-    padding: 0;
-    justify-content: center;
-}
-
-.day {
-    padding: 8px;
-    color: rgb(182, 182, 182);
-}
-
-.moods-in-chart {
-    min-height: 2vmin;
-    min-width: 2vmin;
-    border-radius: 100%;
-}
-
-@media (max-width: 758px) {
-    .index-main {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .chart-wrapper {
-        margin-top: 25px;
-    }
-}
-
-
 /* MOODS/DETAILS */
 
 .container-content {
@@ -288,7 +237,6 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20vh;
     border: 3vmin;
     width:80%;
 }
@@ -311,6 +259,7 @@ footer {
     padding-top: 1vmin;
     padding-right: 2vmin;
 }
+
 
 .card-action {
     color: rgb(255,160,222);
@@ -335,7 +284,7 @@ footer {
 .custom-audio-controls {
     display: flex;
     align-items: center;
-    margin-top: 5vmin;
+    margin-top: 9vmin;
   }
   
   .custom-audio-controls button {
@@ -360,6 +309,15 @@ footer {
 .artist-info {
     text-align: center;
     justify-content: center;
+    margin-bottom: 3vmin;
+}
+
+.detail-listen {
+    color:rgb(255,160,222);
+}
+
+.detail-listen:hover {
+    color:rgb(85,139,188);
 }
 
 @media only screen and (max-width: 600px) {
@@ -367,6 +325,40 @@ footer {
         width: 100%;
         font-size: .8em;
     }
+}
+
+.add-mood-photo {
+    margin-top: 1vmin;
+    display: flex;
+    
+}
+
+#photo-upload {
+    border: none;
+    color:rgb(255,160,222);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#photo-upload:hover {
+    color:rgb(85,139,188);
+}
+
+
+
+.mood-photo {
+    margin: 1vmin;
+    width: 30%;
+    max-height: 20%;
+}
+
+
+
+.user-avatar {
+    border: 1px solid black;
+    height: 5vmin;
+    width: 5vmin;
+    border-radius: 50%;
 }
 
 
@@ -392,7 +384,7 @@ footer {
     color: rgb(255,160,222);
     text-decoration: none;
     border: none;
-    background-color: #101019;
+    background-color: transparent;
 }
 
 .yes-delete:hover {
@@ -523,6 +515,10 @@ table tbody a:hover {
 
 
 /*add a song form*/
+
+input:focus {
+    color: white;
+}
 
 .song-header {
     margin-top: 5vmin;

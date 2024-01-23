@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Mood, Song, CustomUser
+from .models import Mood, Song, CustomUser, MoodPhoto
 from .forms import CustomUserCreationForm, CustomUserChangeForm, SongForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 
@@ -32,6 +32,7 @@ def about(request):
 def moods_index(request):
   songs=Song.objects.all()
   moods=Mood.objects.filter(user = request.user.id)
+  print(moods)
   return render(request, 'moods/index.html', {
     'songs': songs,
     'moods': moods,
@@ -93,7 +94,6 @@ def moods_detail(request, mood_id):
     mood= Mood.objects.get(id=mood_id)
     songs = Song.objects.filter(mood= mood)
     song = songs[random.randint(0, songs.count()-1)]
-    print(mood, songs)
     return render(request, 'moods/detail.html', {
         'mood' :mood,
         'song': song
@@ -120,12 +120,15 @@ def song_file(request, mood_id):
         print(e)
   return redirect('detail', mood_id=mood_id) 
 
+def mood_not_found(request):
+    return render(request, 'mood_not_found.html')
+
   
 def happy_playlist(request):
     moods = Mood.objects.filter(title='HAPPY')
 
     if not moods.exists():
-        raise Http404("Happy Playlist does not exist.")
+        return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -147,7 +150,7 @@ def sad_playlist(request):
     moods = Mood.objects.filter(title='SAD')
 
     if not moods.exists():
-        raise Http404("Sad Playlist does not exist.")
+        return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -169,8 +172,8 @@ def angry_playlist(request):
     moods = Mood.objects.filter(title='ANGRY')
 
     if not moods.exists():
-        raise Http404("Angry Playlist does not exist.")
-
+        return render(request, 'mood_not_found.html')
+    
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
 
@@ -192,7 +195,7 @@ def calm_playlist(request):
     moods = Mood.objects.filter(title='CALM')
 
     if not moods.exists():
-        raise Http404("Calm Playlist does not exist.")
+      return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -214,7 +217,7 @@ def bored_playlist(request):
     moods = Mood.objects.filter(title='BORED')
 
     if not moods.exists():
-        raise Http404("Bored Playlist does not exist.")
+      return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -236,7 +239,7 @@ def anxious_playlist(request):
     moods = Mood.objects.filter(title='ANXIOUS')
 
     if not moods.exists():
-        raise Http404("Anxious Playlist does not exist.")
+      return render(request, 'mood_not_found.html')
 
     mood = moods.first()
     songs = Song.objects.filter(mood=mood)
@@ -299,3 +302,42 @@ def edit_song(request, song_id, playlist):
         print("Song Does Not Exist")
     
     return redirect(playlist)  # Redirect back to the appropriate playlist URL
+
+def add_photo(request, user_id):
+    photo_file = request.FILES.get('photo-file', None)
+    print(photo_file)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        bucket = os.environ['S3_BUCKET']
+        s3.upload_fileobj(photo_file, bucket, key)
+        url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+        user = CustomUser.objects.get(id=user_id)
+        user.avatar = url
+        user.save()
+        print("uploading")
+    return redirect('home')
+
+def user_detail(request, user_id):
+    user = CustomUser.objects.get(id=user_id)
+    return render(request, 'user/user_detail.html', {
+        'user': user
+    })
+    
+
+def add_moodphoto(request,mood_id):
+    moodphoto_file = request.FILES.get('moodphoto_file', None)
+    print(moodphoto_file)
+    if moodphoto_file:
+        s3=boto3.client('s3')
+        
+        key = uuid.uuid4().hex[:6] + moodphoto_file.name[moodphoto_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_MOOD_BUCKET']
+            s3.upload_fileobj(moodphoto_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            MoodPhoto.objects.create(url=url, mood_id=mood_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('detail', mood_id=mood_id)

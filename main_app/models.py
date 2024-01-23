@@ -31,6 +31,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   is_active = models.BooleanField(default=True)
   date_joined = models.DateTimeField(default=timezone.now)
   favorites = models.ManyToManyField(Song, default=list)
+  avatar = models.URLField(max_length=200, default="https://mood-wave-avatars.s3.us-east-2.amazonaws.com/e9090c.jpeg")
 
   USERNAME_FIELD = "email"
   REQUIRED_FIELDS = []
@@ -66,13 +67,7 @@ class Mood(models.Model):
       return reverse("detail", kwargs={"mood_id": self.pk})
   
   
-  
-  
 
-
-  
-  
-  
-
-
-
+class MoodPhoto(models.Model):
+   url = models.URLField()
+   mood = models.ForeignKey(Mood, on_delete=models.CASCADE)

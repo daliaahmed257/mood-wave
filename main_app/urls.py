@@ -4,6 +4,8 @@ from . import views
 
 urlpatterns = [
   path('', views.home, name='home'),
+  path('user/<int:user_id>', views.user_detail, name="user_page"),
+  path('user/<int:user_id>/add_photo/', views.add_photo, name='add_photo'),
   path('about/', views.about, name='about'),
   path('moods/', views.moods_index, name='index'),
   path('playlists/', views.playlists, name='playlists'),
@@ -23,4 +25,6 @@ urlpatterns = [
   path('add_song/<int:mood_id>/', views.add_song, name='add_song'),
   path('delete_song/<int:song_id>/<str:playlist>/', views.delete_song, name='delete_song'),
   path('edit_song/<int:song_id>/<str:playlist>/', views.edit_song, name='edit_song'),
+  path('moods/<int:mood_id>/add_moodphoto/', views.add_moodphoto, name='add_moodphoto'),
+  path('mood_not_found/', views.mood_not_found, name='mood_not_found'),
 ]
