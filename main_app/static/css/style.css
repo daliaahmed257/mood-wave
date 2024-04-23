@@ -74,7 +74,7 @@ a:hover {
 
 .nav-bar {
     position: sticky;
-    background: url(https://i.imgur.com/qujolg6.png) center;
+    background: url(../images/nav-bg.png) center;
     background-size: cover;
 }
 
