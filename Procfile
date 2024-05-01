@@ -1,0 +1,1 @@
+web: gunicorn moodwave.wsgi:application --log-file -
