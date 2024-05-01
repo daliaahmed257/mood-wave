@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-@1msm51c1vid-&b1&qwfh9_bj)ko*jf2u-viye$00v@(7$kpj8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://moodwaves-c14b0e4a98a9.herokuapp.com/']
+ALLOWED_HOSTS = ['moodwaves-c14b0e4a98a9.herokuapp.com']
 
 # Application definition
 
