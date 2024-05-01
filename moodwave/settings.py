@@ -16,6 +16,9 @@ import environ
 environ.Env()
 environ.Env.read_env()
 
+import dj_database_url
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +33,7 @@ SECRET_KEY = 'django-insecure-@1msm51c1vid-&b1&qwfh9_bj)ko*jf2u-viye$00v@(7$kpj8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['moodwaves-c14b0e4a98a9.herokuapp.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -94,11 +97,15 @@ WSGI_APPLICATION = 'moodwave.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'moodwave',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'moodwave',
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 
