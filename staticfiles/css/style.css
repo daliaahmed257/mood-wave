@@ -1,0 +1,614 @@
+/* All PAGES */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Viga', sans-serif;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #2b4162;
+    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
+}
+
+header {
+    width: 100vw;
+}
+
+main {
+    flex: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.link {
+    color: rgb(255,160,222);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 4vmin;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    padding: 8px 16px;
+}
+
+.btn:hover {
+    background-color: #B17B9C;
+}
+
+.error-message {
+    color: rgb(248, 80, 80);
+
+}
+/* BASE */
+
+.nav-bar {
+    position: sticky;
+    background: url(../images/nav-bg.png) center;
+    background-size: cover;
+}
+
+.nav-bar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vmin;
+    flex-direction: row;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.nav-item {
+    padding: 8px 16px;
+}
+
+.logout-btn {
+    border: none;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    cursor: pointer;
+    outline: none;
+    padding: 8px 16px;
+}
+
+footer {
+    bottom: 0;
+    text-align: right;
+    color: rgb(169, 168, 168);
+    padding: 12px;
+    background-color: #101019;
+}
+
+@media (max-width: 767.98px) {
+    .nav-bar-container {
+        flex-direction: column;
+    }
+}
+
+/* ABOUT */
+
+.about-container {
+    max-width: 600px;
+}
+
+/* MOODS/INDEX */
+
+.hero {
+    background-color: #21212f;
+    padding: 10vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 6vmin;
+    text-align: center;
+    color: white;
+}
+
+.hero > h2 {
+    font-weight: lighter;
+}
+
+.form-btn {
+    background-color: #B17B9C;;
+    padding: 16px 20px;
+    border-radius: 8px;
+}
+
+.form-btn > p {
+    margin: 0;
+}
+
+.form-btn:hover {
+    background-color: rgb(145, 88, 123);
+}
+
+.index-main {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    color: white;
+    padding: 0 24px 0 24px;
+    margin: 0 0 56px 0;
+}
+
+.mood-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.mood-cards-list > h4 {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.mood-card {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 3vmin;
+    min-width: 60vmin;
+    gap: 16px;
+}
+
+.mood-card:hover {
+    background-color: rgb(0, 0, 0, .5);
+}
+
+.mood-card p {
+    margin: 0;
+}
+
+.mood-card-left {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mood-card-left  {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mood-card-right {
+    font-size: 14px;
+    color: rgb(218, 218, 218);
+}
+
+.card-text {
+    font-weight: lighter
+}
+
+.mood-content {
+    flex-direction: column;
+}
+
+.mood-logo {
+    min-height: 50px;
+    min-width: 50px;
+    background-color: rgb(255, 234, 0);
+    border-radius: 100%;
+}
+
+/* MOODS/DETAILS */
+
+.container-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3vmin;
+    width:80%;
+}
+
+.details-mood-card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(67, 67, 73);
+    border-radius: 20px;
+    padding: 6vmin;
+    width: 100%;
+   
+}
+
+.detail-date {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-top: 1vmin;
+    padding-right: 2vmin;
+}
+
+
+.card-action {
+    color: rgb(255,160,222);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 2vmin;
+    padding-bottom: 1vmin;
+     > a:first-child {
+        margin-right: 1vmin;
+     }
+     > a:first-child:hover {
+        color: rgb(85,139,188);
+     }
+
+     > a:last-child:hover {
+        color: rgb(85,139,188);
+     }
+  
+}
+
+.custom-audio-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 9vmin;
+  }
+  
+  .custom-audio-controls button {
+    font-size: 1.5em;
+    color: white;
+    background-color:transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .progress-bar {
+    height: 2px;
+    width: 300px; 
+    background-color: white;
+    margin: 0 10px;
+  }
+  
+  .custom-audio-controls audio {
+    display: none;
+  }
+
+.artist-info {
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 3vmin;
+}
+
+.detail-listen {
+    color:rgb(255,160,222);
+}
+
+.detail-listen:hover {
+    color:rgb(85,139,188);
+}
+
+@media only screen and (max-width: 600px) {
+    .details-mood-card {
+        width: 100%;
+        font-size: .8em;
+    }
+}
+
+
+#photo-upload {
+    border: none;
+    color:rgb(255,160,222);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#photo-upload:hover {
+    color:rgb(85,139,188);
+}
+
+
+
+.mood-photo {
+    margin: 1vmin;
+    width: 30%;
+    max-height: 20%;
+}
+
+
+
+.user-avatar {
+    border: 1px solid black;
+    height: 5vmin;
+    width: 5vmin;
+    border-radius: 50%;
+}
+
+
+/* DELETE MOOD CONFIRMATION PAGE */
+
+.delete-title {
+    text-align: center;
+    margin-top: 20vmin;
+}
+
+.delete-mood {
+    text-align: center;
+    color: rgb(255,160,222);
+}
+
+.delete-mood:hover {
+   color: rgb(86, 142, 194)
+}
+
+
+.yes-delete {
+    color: rgb(255,160,222);
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+}
+
+.yes-delete:hover {
+    color: rgb(85,139,188);
+
+}
+
+
+/* NEW MOOD FORM */
+
+.mood-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 75vmin;
+}
+
+.mood-options-container {
+    display: flex;
+    gap: 16px;
+}
+
+#all-moods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+#all-moods > input:checked + div {
+    border: 2px solid white;
+    padding: 8px;
+    border-radius: 100%;
+}
+
+#all-moods > input {
+    visibility: hidden;
+    position: absolute;
+}
+
+.mood-option {
+    height: 8vmin;
+    width: 8vmin;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.happy {
+    background-color: #97F8C4;
+}
+
+.calm {
+    background-color: #97E1F8;
+}
+
+.bored {
+    background-color: #90ADF9;
+}
+
+.sad {
+    background-color: #EDEF84;
+}
+
+.anxious {
+    background-color: #F4945E;
+}
+
+.angry {
+    background-color: #FE8392;
+}
+
+.notes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+
+}
+
+.field {
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 8px;
+    color: white;
+}
+
+.mood-form-btn {
+    width: fit-content;
+    margin: auto;
+} 
+
+
+/* PLAYLISTS */
+
+.playlist-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 1.5vmin;
+}
+
+
+table tbody a {
+    color: rgb(255,160,222);
+}
+
+table tbody a:hover {
+    color: rgb(85,139,188);
+}
+
+.delete-song {
+    border: none;
+    background-color: transparent;
+    color:rgb(255,160,222);
+    font-size: .8em;
+}
+
+.delete-song:hover {
+    color:rgb(85,139,188)
+}
+
+
+/*add a song form*/
+
+input:focus {
+    color: white;
+}
+
+.song-header {
+    margin-top: 5vmin;
+    margin-bottom: 2vmin;
+}
+
+.song-form label {
+    display: inline-block;
+    width: 100px;
+}
+
+.song-form input {
+    background-color: transparent;
+    border: .1vmin solid white;
+    margin: 1vmin;
+    width: 200px;
+   
+}
+
+.song-btn {
+   background-color: transparent;
+    color:rgb(255,160,222);
+    border: none;
+    margin-top: 2vmin;
+   
+}
+
+.song-btn:hover {
+    color: rgb(85,139,188);
+
+}
+
+
+/* EDIT song form*/
+
+.save-changes {
+    background-color: transparent;
+    color:rgb(255,160,222);
+    border: none;
+   
+}
+
+.save-changes:hover {
+    color: rgb(85,139,188);
+}
+
+/* User Profile */
+
+.profile-image {
+    width: 30vmin; 
+    height: 30vmin; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-bottom: 3vmin;
+  }
+
+  h4 {
+    font-size: 1.5em;
+  
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .custom-upload-btn {
+    background-color: transparent;
+    color: rgb(255,160,222);
+    border: none;
+    cursor: pointer;
+  }
+
+
+  #photo-file label {
+    display: inline-block;
+    background-color: transparent;
+    color: rgb(255,160,222);
+    padding:.8vmin;
+   border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+
+  #photo-file label:hover {
+    color: rgb(85,139,188);
+  }
+
+.custom-upload-btn:hover {
+    color: rgb(85,139,188);
+}
+
+.favorite-header {
+    margin-top: 5vmin;
+}
