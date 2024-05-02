@@ -94,7 +94,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 WSGI_APPLICATION = 'moodwave.wsgi.application'
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Database
